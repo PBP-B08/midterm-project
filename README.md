@@ -45,6 +45,7 @@ Cultural Center merupakan aplikasi yang menjadi sarana mempromosikan kebudayaan 
    - Deskripsi: Halaman utama yang berisi menu fitur-fitur aplikasi
    - Detail fitur:
       - Landing Page
+      - Search box daerah
       - Form feedback
 4. Event calendar
    - Developer: [Gabriel Edgar Firdausyah N](https://github.com/nois44)
@@ -62,7 +63,7 @@ Cultural Center merupakan aplikasi yang menjadi sarana mempromosikan kebudayaan 
    - Developer: [Naila Shafirni Hidayat](https://github.com/nailashfrni)
    - Deskripsi: Halaman yang menampilkan informasi mengenai rekomendasi makanan populer dan event atau perayaan tahunan khas daerah.
    - Detail fitur:
-      - Foods
+      - Food
       - Events
 7. FAQ dan Review
    - Developer: [Achmad Noval Fahrezi](https://github.com/novalzfahr)
