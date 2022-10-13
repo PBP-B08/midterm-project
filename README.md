@@ -1,6 +1,6 @@
 # Cultural Center
 
-[![Test and Deploy][actions-badge]](commits-gh)
+[![Test and Deploy][actions-badge]][commits-gh]
 
 > Proyek ini dibuat untuk memenuhi tugas Proyek Tengah Semester (PTS)
 > pada mata kuliah Pemrograman Berbasis Platform (CSGE602022) yang
@@ -13,7 +13,7 @@ Proyek ini dapat diakses di [cultural-center.herokuapp.com](https://cultural-cen
 
 ## Pengembang Aplikasi
 
-Proyek ini dibuat oleh kelompok C04 yang beranggotakan sebagai berikut.
+Proyek ini dibuat oleh kelompok B08 yang beranggotakan sebagai berikut.
 
 - [Muhammad Tarreq Maulana](https://github.com/mrtrq) (2106750704)
 - [Muhammad Vicky Maulana](https://github.com/electyrion) (2106750906)
@@ -40,7 +40,7 @@ Cultural Center merupakan aplikasi yang menjadi sarana mempromosikan kebudayaan 
    - Detail fitur:
       - Profile page
       - Edit profile
-3. Homepage (BARENG)
+3. Homepage
    - Developer: [Achmad Noval Fahrezi](https://github.com/novalzfahr)
    - Deskripsi: Halaman utama yang berisi menu fitur-fitur aplikasi
    - Detail fitur:
