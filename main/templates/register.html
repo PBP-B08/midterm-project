@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Registrasi Akun</title>
+{% endblock meta %}
+
+{% block content %}  
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"></link>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet"></link>
+<style>
+    .body-bg {
+        background-color: #9921e8;
+        background-image: linear-gradient(315deg, #9921e8 0%, #5f72be 74%);
+    }
+</style>
+
+<body class="body-bg min-h-screen pt-12 md:pt-20 pb-6 px-2 md:px-0" style="font-family:'Lato',sans-serif;">
+  <header class="max-w-lg mx-auto">
+      <a href="#">
+          <h1 class="text-4xl font-bold text-white text-center">Cultural-Center</h1>
+      </a>
+  </header>
+
+  <main class="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
+      <section>
+          <h3 class="font-bold text-2xl flex justify-center">Register</h3>
+          <!-- <p class="text-gray-600 pt-2 flex justify-center">Sign in to your account.</p> -->
+      </section>
+
+      <section class="mt-10">
+        <form method="POST" >  
+            {% csrf_token %}  
+            <table class="flex justify-center">
+                {{ form.as_table }}  
+                <tr>  
+                    <td></td>
+                    <td><input class="bottom-auto" type="submit" name="submit" value="Daftar"/></td>  
+                </tr>  
+            </table>  
+        </form>
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+      </section>
+  </main>
+
+  <!-- <div class="max-w-lg mx-auto text-center mt-6 mb-6">
+      <p class="text-white">Don't have an account? <a href="{% url 'main:register' %}" class="font-bold hover:underline">Sign up</a>.</p>
+  </div> -->
+
+  <!-- <footer class="max-w-lg mx-auto flex justify-center text-white">
+      <a href="#" class="hover:underline">Contact</a>
+      <span class="mx-3">•</span>
+      <a href="#" class="hover:underline">Privacy</a>
+  </footer> -->
+</body>
+
+{% endblock content %}
