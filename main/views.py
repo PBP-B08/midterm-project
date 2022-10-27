@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
 
-@login_required(login_url='main:login')
+# @login_required(login_url='main:login')
 def index(request):
     return render(request, 'index.html')
 
