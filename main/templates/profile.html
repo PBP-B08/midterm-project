@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Dashboard Profile</title>
+{% endblock meta %}
+
+{% block content %}
+<div class="px-4">
+  <div class="
+        justify-center
+        items-center
+        bg-white
+        mx-auto
+        max-w-2xl
+        rounded-lg
+        my-16
+        p-16
+      ">
+    <h1 class="text-2xl font-medium">Dashboard Profile</h1>
+    <br><br>
+    <div class="row justify-content-between">
+        <div class="col-9">
+            <div class="m-auto mt-2">
+                <b>Username:</b>
+                {{ username }}<br>
+            </div>
+            <div class="m-auto mt-2">
+                <b>Occupation:</b>
+                {{ occupation }}<br>
+            </div>
+            <div class="m-auto mt-2">
+                <b>City:</b>
+                {{ city }}<br>
+            </div>
+        </div>
+        <div class="col-3">
+            <img src="../{{ image }}" alt="Profile Image">
+        </div>
+    </div>
+
+  <button id="submit" class="btn btn-primary mt-5 mb-0 shadow-sm rounded" data-bs-toggle="modal" data-bs-target="#editModal">
+      Edit Profile
+  </button>
+  <!-- Vertically centered modal -->
+  <div class="modal fade" id="editModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Profile</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="edit-profile" action="update/" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            Profile Image<br>
+            <input type="file" id="image" name="image" id="id_image" width="50" height="100"><br><br>
+            Username <input type="text" id="username" name="username" placeholder="Username" disabled class="form-control" maxlength="15" required="" id="id_username" value="{{ username }}"><br>
+            Occupation <input type="text" id="occupation" name="occupation" placeholder="Occupation" class="form-control" maxlength="15" required="" id="id_occupation" value="{{ occupation }}"><br>
+            City <input type="text" id="city" name="city" placeholder="City" class="form-control" maxlength="15" required="" id="id_city" value="{{ city }}"><br>
+            <input type="submit" id="edit-btn" class="btn btn-primary" data-bs-dismiss="modal" name="submit" value="Update">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </form>
+        </div>
+        <!-- <div class="modal-footer">
+        </div> -->
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+{% endblock content %}
