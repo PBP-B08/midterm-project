@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'recommendation',
+    'eventcalendar',
     'things_to_do',
 ]
 
