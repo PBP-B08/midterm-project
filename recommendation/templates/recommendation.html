@@ -28,22 +28,42 @@
             my-8
             p-16
           ">
-        <h1 class="text-2xl font-medium">${ province.fields.header }</h1>
+        <h1 class="text-2xl font-medium">${ province.fields.title }</h1>
         <p>${ province.fields.summary }</p>
         <div class="flex mt-10 w-fit items-center space-x-3 py-3 px-6 bg-indigo-600 text-white rounded-lg  transition-all duration-400 transform hover:scale-105 cursor-pointer hover:shadow-lg">
-          <a href="detail/${ province.pk }">
+          <a href="detail/${ province.pk }/">
             <button class="text-lg text-md">Detail</button>
           </a>
+          
         </div>
+        <div class="flex mt-10 w-fit items-center space-x-3 py-3 px-6 bg-indigo-600 text-white rounded-lg  transition-all duration-400 transform hover:scale-105 cursor-pointer hover:shadow-lg">
+          <button class="text-lg text-md" onclick=deleteProvince(${province.pk})>Delete</button>
+        </div>
+        
       </div>
     </div>`);
   }
 
   // get data json
-  $.getJSON( 'json/', function( data ) {
-      data.forEach(element => {
-        addCard(element);
-      });
+  const getData = () => {
+    $.ajax({
+      url: 'json/',
+      type: "GET",
+      dataType: "json",
+      success: function (data) {
+        data.forEach(province => {
+          addCard(province);
+        });
+      },
+      error: function (data) {
+        console.log(data);
+      }
+    });
+  }
+
+  // get data when page loaded
+  $(document).ready(function () {
+    getData();
   });
 
   // function handler for add province asynchronously
@@ -64,6 +84,21 @@
     }
   }
 
+  // function handler for delete province asynchronously
+  var deleteProvince = function(id) {
+    $.ajax({
+      type: "DELETE",
+      headers: { "X-CSRFToken": document.getElementsByName("csrfmiddlewaretoken")[0].value },
+      url: "deleteProvince/<int:pk>/".replace('<int:pk>', id),
+      data: {
+        id: id
+      },
+      dataType: "json",
+      encode: true,
+    }).done(function (data) {
+      $(`#province-${id}`).remove();
+    })
+  }
 </script>
 
 {% endblock meta %}
@@ -115,16 +150,36 @@
         <!--Body-->
         <form id="add-province" action="" method="POST" enctype="multipart/form-data">
           {% csrf_token %}
-          <input type="text" id="title" name="title" placeholder="Title" class="form-control" maxlength="255" required=""><br>
-          <input type="text" id="header" name="header" placeholder="Header" class="form-control" maxlength="255" required=""><br>
-          <input type="text" id="summary" name="summary" placeholder="Summary" class="form-control" maxlength="255" required=""><br>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
+              Title
+            </label>
+            <input type="text" id="title" name="title" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="header">
+              Header
+            </label>
+            <textarea type="text" id="header" name="header" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="summary">
+              Summary
+            </label>
+            <textarea type="text" id="summary" name="summary" cols="60" rows="5" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+          </div>
+          
+          <!-- <input type="text" id="title" name="title" placeholder="Title" class="form-control" maxlength="255" required> -->
+          <!-- <input type="text" id="header" name="header" placeholder="Header" class="form-control" maxlength="255" required> -->
+          <!-- <input type="text" id="summary" name="summary" placeholder="Summary" class="form-control" maxlength="255" required> -->
           <!-- <textarea name="description" id="description" cols="40" rows="10" placeholder="Description" class="form-control" required="" id="id_description"></textarea> -->
 
         </form>
+        
 
         <!--Footer-->
         <div class="flex justify-end pt-2">
-          <button onclick="addProvince()" name="submit" class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2">Add</button>
+          <button onclick="addProvince()" name="submit" class="modal-close px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2">Add</button>
           <button class="modal-close px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Close</button>
         </div>
         

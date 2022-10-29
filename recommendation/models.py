@@ -3,16 +3,6 @@ from django.db import models
 # Create your models here.
 
 
-class Recommendation(models.Model):
-    """Model representing a recommendation."""
-    title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='recommendation_images', blank=True)
-    description = models.TextField(
-        max_length=1000, help_text='Enter a brief description of the recommendation')
-    summary = models.TextField(
-        max_length=1000, help_text='Enter a brief summary of the recommendation')
-
-
 class Province(models.Model):
     """Model representing a province."""
     title = models.CharField(max_length=100)
@@ -22,7 +12,7 @@ class Province(models.Model):
 
     def __str__(self):
         """String for representing the Model object."""
-        return self.name
+        return self.title
 
 
 class Area(models.Model):
@@ -37,4 +27,4 @@ class Area(models.Model):
 
     def __str__(self):
         """String for representing the Model object."""
-        return self.name
+        return self.title

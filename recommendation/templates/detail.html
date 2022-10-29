@@ -17,17 +17,9 @@
           rounded-lg
           mt-16
         ">
-        <div class="md:flex items-center p-16 mt-4">
-            <div class="">
-                <h1 class="lg:text-5xl  font-bold leading-tight text-3xl">{{ recommendation.title }}</h1>
-                <figure class="mt-4"><img class="img-fluid rounded" src="/recommendation/media/{{ recommendation.articleImage }}" alt="..." height = "400px" width="900"/></figure>
-                <p class="mt-4 text-lg font-normal">{{ recommendation.description }}</p>
-                <div class="flex mt-10 w-fit items-center space-x-3 py-3 px-6 bg-indigo-600 text-white rounded-lg  transition-all duration-400 transform hover:scale-105 cursor-pointer hover:shadow-lg">
-                    <a href="/recommendation/">
-                        <button class="text-lg text-md ">Back</button>
-                    </a>
-                </div>
-            </div>
+        <div>
+            <!-- display province -->
+            <h1 class="text-2xl font-bold text-gray-800">{{ province.fields.title }}</h1>
         </div>
     </div>
   </div>

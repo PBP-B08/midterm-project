@@ -1,17 +1,18 @@
 import imp
+from turtle import title
 from django import forms
-from .models import Recommendation, Province, Area
+from .models import Province, Area
 
 
-class RecommendationForm(forms.ModelForm):
-    class Meta:
-        model = Recommendation
-        fields = ['title', 'image', 'description', 'summary']
+# class RecommendationForm(forms.ModelForm):
+#     class Meta:
+#         model = Recommendation
+#         fields = ['title', 'image', 'description', 'summary']
 
 
 class ProvinceForm(forms.ModelForm):
-    name = forms.CharField(max_length=128, widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': 'Province Name'}))
+    title = forms.CharField(max_length=128, widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Province title'}))
     header = forms.CharField(max_length=500, widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Enter a brief header'}))
     summary = forms.CharField(max_length=500, widget=forms.TextInput(
@@ -19,7 +20,7 @@ class ProvinceForm(forms.ModelForm):
 
     class Meta:
         model = Province
-        fields = ['name', 'header', 'summary']
+        fields = ['title', 'header', 'summary']
 
 
 class AreaForm(forms.ModelForm):
