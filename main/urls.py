@@ -15,6 +15,8 @@ urlpatterns = [
     path('login/', login_user, name='login'),
     path('register/', register, name='register'),
     path('logout/', logout_user, name='logout'),
+    path('recommendation/', include('recommendation.urls')),
+    path('event-calendar/', include('eventcalendar.urls')),
     path('profile/', profile, name='profile'),
     path('profile/update/', update_profile, name='update_profile'),
     path('recommendation/', include('recommendation.urls')),

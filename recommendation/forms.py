@@ -10,6 +10,13 @@ class RecommendationForm(forms.ModelForm):
 
 
 class ProvinceForm(forms.ModelForm):
+    name = forms.CharField(max_length=128, widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Province Name'}))
+    header = forms.CharField(max_length=500, widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Enter a brief header'}))
+    summary = forms.CharField(max_length=500, widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Enter a brief summary'}))
+
     class Meta:
         model = Province
         fields = ['name', 'header', 'summary']
@@ -18,4 +25,4 @@ class ProvinceForm(forms.ModelForm):
 class AreaForm(forms.ModelForm):
     class Meta:
         model = Area
-        fields = ['name', 'province', 'summary', 'description']
+        fields = ['title', 'province', 'summary', 'description']

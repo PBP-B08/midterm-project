@@ -15,7 +15,7 @@ class Recommendation(models.Model):
 
 class Province(models.Model):
     """Model representing a province."""
-    name = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
     header = models.CharField(max_length=100)
     summary = models.TextField(
         max_length=1000, help_text='Enter a brief summary of the province')
@@ -27,7 +27,7 @@ class Province(models.Model):
 
 class Area(models.Model):
     """Model representing an area."""
-    name = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
     province = models.ForeignKey(
         'Province', on_delete=models.SET_NULL, null=True)
     summary = models.TextField(

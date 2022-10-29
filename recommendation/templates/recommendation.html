@@ -12,7 +12,62 @@
     overflow-y: visible !important;
   }
 </style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+
+  // function for add province card
+  const addCard = province => {
+    $(".row").append(`
+    <div class="col px-4">
+      <div class="
+            bg-white
+            mx-auto
+            max-w-2xl
+            rounded-lg
+            my-8
+            p-16
+          ">
+        <h1 class="text-2xl font-medium">${ province.fields.header }</h1>
+        <p>${ province.fields.summary }</p>
+        <div class="flex mt-10 w-fit items-center space-x-3 py-3 px-6 bg-indigo-600 text-white rounded-lg  transition-all duration-400 transform hover:scale-105 cursor-pointer hover:shadow-lg">
+          <a href="detail/${ province.pk }">
+            <button class="text-lg text-md">Detail</button>
+          </a>
+        </div>
+      </div>
+    </div>`);
+  }
+
+  // get data json
+  $.getJSON( 'json/', function( data ) {
+      data.forEach(element => {
+        addCard(element);
+      });
+  });
+
+  // function handler for add province asynchronously
+  var addProvince = function() {
+    var formData = $("#add-province").serialize();
+
+    if ($("#title").val() && $("#header").val() && $('#summary')) { // ensure the form is filled
+      $.ajax({
+        type: "POST",
+        url: "addProvince/",
+        data: formData,
+        dataType: "json",
+        encode: true,
+      }).done(function (data) {
+        addCard(data);
+        $("#add-province").trigger("reset");
+      })
+    }
+  }
+
+</script>
+
 {% endblock meta %}
+
 
 {% block content %}
 <div class="md:flex items-center p-16 mt-20">
@@ -58,15 +113,18 @@
         </div>
 
         <!--Body-->
-        <p>Modal content can go here</p>
-        <p>...</p>
-        <p>...</p>
-        <p>...</p>
-        <p>...</p>
+        <form id="add-province" action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input type="text" id="title" name="title" placeholder="Title" class="form-control" maxlength="255" required=""><br>
+          <input type="text" id="header" name="header" placeholder="Header" class="form-control" maxlength="255" required=""><br>
+          <input type="text" id="summary" name="summary" placeholder="Summary" class="form-control" maxlength="255" required=""><br>
+          <!-- <textarea name="description" id="description" cols="40" rows="10" placeholder="Description" class="form-control" required="" id="id_description"></textarea> -->
+
+        </form>
 
         <!--Footer-->
         <div class="flex justify-end pt-2">
-          <button class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2">Action</button>
+          <button onclick="addProvince()" name="submit" class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2">Add</button>
           <button class="modal-close px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">Close</button>
         </div>
         
@@ -117,7 +175,12 @@
   </script>
 </body>
 
-{% for recommendation in recommendationList %}
+<div class="container-xl">
+  <div class="row rows-cols-1 row-cols-md-3 g-4 justify-content-center">
+  </div>
+</div>
+
+<!-- {% for recommendation in recommendationList %}
 <div class="px-4">
   <div class="
         bg-white
@@ -137,7 +200,7 @@
     </div>
   </div>
 </div>
-{% endfor %}
+{% endfor %} -->
 
 
 
