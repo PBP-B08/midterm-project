@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>{{ province }} - Things to Do</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    // get json food data
+    $.getJSON( `json/food/${prov_id}`, function( data ) {
+        data.forEach(food => {
+            // addCard(element);
+        });
+    });
+    // get json event data
+    $.getJSON( `json/event/${prov_id}`, function( data ) {
+        data.forEach(event => {
+            // addCard(element);
+        });
+    });
+</script>
+{% endblock meta %}
+
+{% block content %}
+<div class="px-4">
+  <div class="
+        justify-center
+        items-center
+        bg-white
+        mx-auto
+        max-w-2xl
+        rounded-lg
+        my-16
+        p-16
+      ">
+    <div style="margin-bottom:30px;">
+        <h1 class="text-2xl font-medium">Things to Do</h1>
+        <h1 class="text-2xl font-medium">in {{ province }}</h1>
+    </div>
+
+{% endblock content %}

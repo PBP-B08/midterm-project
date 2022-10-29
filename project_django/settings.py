@@ -40,9 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
-
     'PlanYourTrip',
-
     'recommendation',
     'eventcalendar',
     'things_to_do',

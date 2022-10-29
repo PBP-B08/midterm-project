@@ -42,15 +42,21 @@
     <div style="margin-bottom:30px;">
         <h1 class="text-2xl font-medium">Dashboard Profile</h1>
     </div>
-    <div class="gap-5 columns-2 mb-10">
+    <div class="gap-5 md:columns-3 mb-10">
         <div>
-            <img class="mr-auto max-w-xs h-auto" style="max-width:300px; max-height:200px;" src="../{{ image }}" alt="Profile Image">
+            <img class="mr-auto max-w-xs h-auto" style="width:120px; height:120px;" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Profile Image">
         </div>
         <div>
             <div class="mt-5">
                 <h6><b>Username</b></h6>
                 {{ username }}<br>
             </div>
+            <div class="mt-5">
+                <h6><b>Name</b></h6>
+                {{ name }}<br>
+            </div>
+        </div>
+        <div>
             <div class="mt-5">
                 <h6><b>Occupation</b></h6>
                 {{ occupation }}<br>
@@ -79,12 +85,12 @@
                     <form class="space-y-6" id="edit-profile" action="update/" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div>
-                            <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Profile Image</label>
-                            <input type="file" name="image" id="image" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                        </div>
-                        <div>
                             <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Username</label>
                             <input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200" value="{{ username }}" disabled required>
+                        </div>
+                        <div>
+                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
+                            <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Name" value="{{ name }}" required>
                         </div>
                         <div>
                             <label for="occupation" class="block mb-2 text-sm font-medium text-gray-900">Occupation</label>
