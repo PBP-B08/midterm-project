@@ -1,0 +1,28 @@
+[
+    {
+        "model": "faq_review.FrequentlyAskedQuestion",
+        "pk": 1,
+        "fields": {
+            "question": "Tempat manakah yang paling favorit di daerah ini?",
+            "answer": "Monas merupakan tempat paling populer di Jakarta karena icon kota Jakarta."
+        }
+    },
+
+    {
+        "model": "faq_review.FrequentlyAskedQuestion",
+        "pk": 2,
+        "fields": {
+            "question": "Pertanyaan 2",
+            "answer": "Jawaban pertanyaan 2"
+        }
+    },
+
+    {
+        "model": "faq_review.FrequentlyAskedQuestion",
+        "pk": 3,
+        "fields": {
+            "question": "Pertanyaan 3",
+            "answer": "Jawaban pertanyaan 3"
+        }
+    }
+]

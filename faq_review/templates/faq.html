@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<script>
+  $(document).ready(function(){
+      $.getJSON("{% url 'faq_review:show_json' %}", function(data){
+        var count = 0;
+          $.each(data, function(index, value){
+              console.log(value)
+              console.log(count)
+              $("#faq-text").append(
+                  `<div class="accordion faq-accordian" id="faqAccordion">
+                  <div class="card border-0 ">
+                      <div class="card-header" id="heading${count}">
+                          <h6 class="mb-0 collapsed" data-bs-toggle="collapse" data-bs-target="#collapsed${count}" aria-expanded="true" aria-controls="collapsed${count}}">${value.fields.question}</h6>
+                      </div>
+                      <div class="collapse" id="collapsed${count}" aria-labelledby="heading${count}" data-parent="#faqAccordion">
+                          <div class="card-body">
+                              <p>${value.fields.answer}</p>
+                          </div>
+                      </div>
+                  </div>`
+              )
+              count++;
+          })
+      })
+  })
+</script>
+
+<link rel="stylesheet" href="{% static 'css/faq.css' %}">
+<div class="faq_area section_padding_130" id="faq">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-lg-6">
+                <div class="section_heading text-center">
+                    <h3><span>Frequently </span> Asked Questions</h3>
+                    <p>This is a page that showed most asked questions by users and travellers.</p>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-10 col-lg-8" id="faq-text">
+                <div class="accordion faq-accordian" id="faqAccordion">
+                </div>
+            </div>
+            <div class="support-button text-center d-flex align-items-center justify-content-center mt-4">
+                <p class="mb-0 px-2">Can't find your answers?</p>
+                <a href="#"> Contact us</a>
+            </div>
+        </div>
+    </div>
+</div>  
+{% endblock content %}
