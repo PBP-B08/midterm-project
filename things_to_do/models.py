@@ -1,15 +1,16 @@
 from django.db import models
+from recommendation.models import Province
 
 # Create your models here.
 class Food(models.Model):
-    # daerah = models.ForeignKey()
-    nama = models.CharField(max_length=255)
-    deskripsi = models.TextField()
-    gambar = models.ImageField(upload_to='files/food')
+    province = models.ForeignKey(Province, on_delete=models.CASCADE, null=True)
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    image = models.URLField(max_length = 255)
     
 class Event(models.Model):
-    # daerah = models.ForeignKey()
-    nama = models.CharField(max_length=255)
-    tanggal = models.DateField()
-    deskripsi = models.TextField()
-    gambar = models.ImageField(upload_to='files/events')
+    province = models.ForeignKey(Province, on_delete=models.CASCADE, null=True)
+    name = models.CharField(max_length=255)
+    date = models.DateField()
+    description = models.TextField()
+    image = models.URLField(max_length = 255)

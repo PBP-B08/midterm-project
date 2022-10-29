@@ -1,6 +1,3 @@
-
-
-
 from django.urls import include, path
 from django.conf.urls.static import static
 from django.conf import settings
@@ -19,8 +16,7 @@ urlpatterns = [
     path('profile/update/', update_profile, name='update_profile'),
     path('recommendation/', include('recommendation.urls')),
     path('event-calendar/', include('eventcalendar.urls')),
-    # path('things-to-do/', include('things_to_do.urls')),
-
+    path('things-to-do/', include('things_to_do.urls')),
     path('plan/', include('PlanYourTrip.urls')),
 
 ]
