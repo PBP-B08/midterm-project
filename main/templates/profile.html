@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Dashboard Profile</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{% endblock meta %}
+
+{% block content %}
+<style>
+    #update-modal {
+        text-align: center;
+    }
+
+    #update-modal::before {
+        content: "";      
+        display: inline-block;
+        height: 100%;    
+        margin-right: -4px;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .modal-dialog { 
+        display: inline-block;  
+        text-align: left;   
+        vertical-align: middle;
+    }
+
+</style>
+<div class="px-4">
+  <div class="
+        justify-center
+        items-center
+        bg-white
+        mx-auto
+        max-w-2xl
+        rounded-lg
+        my-16
+        p-16
+      ">
+    <div style="margin-bottom:30px;">
+        <h1 class="text-2xl font-medium">Dashboard Profile</h1>
+    </div>
+    <div class="gap-5 columns-2 mb-10">
+        <div>
+            <img class="mr-auto max-w-xs h-auto" style="max-width:300px; max-height:200px;" src="../{{ image }}" alt="Profile Image">
+        </div>
+        <div>
+            <div class="mt-5">
+                <h6><b>Username</b></h6>
+                {{ username }}<br>
+            </div>
+            <div class="mt-5">
+                <h6><b>Occupation</b></h6>
+                {{ occupation }}<br>
+            </div>
+            <div class="mt-5">
+                <h6><b>City</b></h6>
+                {{ city }}<br>
+            </div>
+        </div>
+    </div>
+
+    <button id="edit-btn" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button" data-modal-toggle="update-modal">
+        Edit Profile
+    </button>
+    <!-- Main modal -->
+    <div id="update-modal" tabindex="-1" aria-hidden="true" class="hidden fixed bg-gray-600 bg-opacity-50 overflow-y-auto overflow-x-hidden top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
+        <div class="modal-dialog relative p-4 w-full max-w-md h-full md:h-auto">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow">
+                <button id="close-btn" type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-toggle="update-modal">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="py-6 px-6 lg:px-8">
+                    <h3 class="mb-4 text-xl font-medium text-gray-900">Edit Profile</h3>
+                    <form class="space-y-6" id="edit-profile" action="update/" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div>
+                            <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Profile Image</label>
+                            <input type="file" name="image" id="image" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        </div>
+                        <div>
+                            <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Username</label>
+                            <input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-200" value="{{ username }}" disabled required>
+                        </div>
+                        <div>
+                            <label for="occupation" class="block mb-2 text-sm font-medium text-gray-900">Occupation</label>
+                            <input type="text" name="occupation" id="occupation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Occupation" value="{{ occupation }}" required>
+                        </div>
+                        <div>
+                            <label for="city" class="block mb-2 text-sm font-medium text-gray-900">City</label>
+                            <input type="text" name="city" id="city" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="City" value="{{ city }}" required>
+                        </div>
+                        <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+  </div>
+</div>
+<script>
+    // Grabs all the Elements by their IDs which we had given them
+    let modal = document.getElementById("update-modal");
+    let editBtn = document.getElementById("edit-btn");
+    let closeBtn = document.getElementById("close-btn");
+
+    // We want the modal to open when the Open button is clicked
+    editBtn.onclick = function() {
+        $("#update-modal").fadeIn();
+    }
+    // We want the modal to close when the Close button is clicked
+    closeBtn.onclick = function() {
+        $("#update-modal").fadeOut();
+    }
+
+    // The modal will close when the user clicks anywhere outside the modal
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            $("#update-modal").fadeOut();
+        }
+    }
+</script>
+{% endblock content %}

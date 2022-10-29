@@ -1,17 +1,19 @@
+from multiprocessing import context
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.contrib import messages
 from datetime import date
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.core import serializers
+from .models import Profile
 
-
-@login_required(login_url='main:login')
+# @login_required(login_url='main:login')
 def index(request):
     return render(request, 'index.html')
-
 
 def login_user(request):
     if request.method == "POST":
@@ -51,3 +53,41 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+@login_required(login_url='main:login')
+def profile(request):
+    # display user profile info
+    profile = Profile.objects.get(user=request.user)
+    user = User.objects.get(id=request.user.id)
+    if profile.city == None:
+        profile.city = ""
+    if profile.occupation == None:
+        profile.occupation = ""
+    if not profile.image:
+        profile.image = "pictures/image_profile/blank.webp"
+
+    context = {'username':user,
+                'city': profile.city,
+                'occupation': profile.occupation,
+                'image':profile.image}
+    return render(request, 'profile.html', context)
+
+@login_required(login_url='main:login')
+def update_profile(request):
+    if request.method == "POST":
+        profile = Profile.objects.get(user=request.user.id)
+        occupation = request.POST.get("occupation")
+        city = request.POST.get("city")
+        image = request.FILES.get("image")
+
+        if image:
+            if profile.image:
+                profile.image.delete()
+            profile.image = image
+        if occupation:
+            profile.occupation = occupation
+        if city:
+            profile.city = city
+
+        profile.save()        
+        return redirect("main:profile")
