@@ -87,7 +87,7 @@ def addArea(request):
 
 
 def detail(request, pk):
-    province = Province.objects.get(id=pk)
+    province = Province.objects.get(pk=pk)
     context = {'province': province}
     return render(request, 'detail.html', context)
 
