@@ -24,6 +24,15 @@ class ProvinceForm(forms.ModelForm):
 
 
 class AreaForm(forms.ModelForm):
+    title = forms.CharField(max_length=128, widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Area title'}))
+    province = forms.ModelChoiceField(queryset=Province.objects.all(), widget=forms.Select(
+        attrs={'class': 'form-control', 'placeholder': 'Select a province'}))
+    summary = forms.CharField(max_length=500, widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Enter a brief summary'}))
+    description = forms.CharField(max_length=1000, widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Enter a brief description'}))
+
     class Meta:
         model = Area
         fields = ['title', 'province', 'summary', 'description']
