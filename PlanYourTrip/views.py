@@ -2,8 +2,10 @@
 from multiprocessing import context
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import JsonResponse
 from PlanYourTrip.models import PlanProperties
 from .forms import InputForm
+from django.contrib.auth.models import User
 
 # Create your views here.
 # request handler
@@ -19,24 +21,23 @@ def say_plan(request):
     return render(request, "helo.html", context)
 
 def say_form(request):
-    context = {}
-    context['form'] = InputForm()
+    items = PlanProperties.objects.filter(user=request.user)
 
-    content = None
-    form = InputForm()
-    if request.method == "POST":
+    context = {}
+    context['items'] = items
+    context['form'] = InputForm()
+    if request.method == 'POST':
         form = InputForm(request.POST)
         if form.is_valid():
             content = form.save(commit=False)
-            content.post = post
-            
+            content.user = request.user
+            content.save()
+            return JsonResponse({'judul': content.judul, 'destinasi':content.destinasi, 'aktivitas': content.aktivitas})
 
 
+    return render(request, 'helo.html', context)
 
 
-
-
-    return render(request, 'form.html', context)
     # if request.method == 'POST':
     #     form = InputForm(request.POST)
     #     if form.is_valid():
@@ -50,3 +51,10 @@ def say_form(request):
             
             #return render(request, 'form.html', context)
 
+#content = None
+    # form = InputForm()
+    # if request.method == "POST":
+    #     form = InputForm(request.POST)
+    #     if form.is_valid():
+    #         content = form.save(commit=False)
+    #         content.post = post
