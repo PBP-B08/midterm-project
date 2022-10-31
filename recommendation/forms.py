@@ -1,13 +1,5 @@
-import imp
-from turtle import title
 from django import forms
 from .models import Province, Area
-
-
-# class RecommendationForm(forms.ModelForm):
-#     class Meta:
-#         model = Recommendation
-#         fields = ['title', 'image', 'description', 'summary']
 
 
 class ProvinceForm(forms.ModelForm):
