@@ -4,10 +4,10 @@ from faq_review.models import reviewUser,FrequentlyAskedQuestion
 from faq_review.forms import reviewForm
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
-# from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-# @login_required(login_url='/main/login')
+@login_required(login_url='/main/login')
 def show_faq_review(request):
     form = reviewForm()
     faq = FrequentlyAskedQuestion.objects.all()
@@ -19,7 +19,7 @@ def show_faq_review(request):
     return render(request, 'faq.html', context)
 
 @csrf_exempt
-# @login_required(login_url="/main/login/")
+@login_required(login_url="/main/login/")
 def add_review(request):
     if request.method == "POST":
         print("hi")
