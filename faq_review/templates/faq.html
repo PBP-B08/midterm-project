@@ -4,7 +4,7 @@
 {% load static %}
 <script>
   $(document).ready(function(){
-      $.getJSON("{% url 'faq_review:show_json_faq' %}", function(data){
+      $.getJSON("/faq_review/show_json_faq/", function(data){
         var count = 0;
           $.each(data, function(index, value){
               console.log(value)
@@ -28,7 +28,7 @@
   })
 
   $(document).ready(function(){
-        $.getJSON("{% url 'faq_review:show_json_review' %}", function(data){
+        $.getJSON("/faq_review/show_json_faq/", function(data){
             $.each(data, function(index,value){
               console.log(value)
                 $("#review-card").append( 

@@ -41,6 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'faq_review',
+    'recommendation',
+    'PlanYourTrip',
+    'eventcalendar',
+    'things_to_do',
+
 ]
 
 MIDDLEWARE = [
