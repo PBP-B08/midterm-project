@@ -24,5 +24,21 @@
             "question": "Pertanyaan 3",
             "answer": "Jawaban pertanyaan 3"
         }
+    },
+    {
+        "model": "faq_review.FrequentlyAskedQuestion",
+        "pk": 4,
+        "fields": {
+            "question": "Pertanyaan 4",
+            "answer": "Jawaban pertanyaan 4"
+        }
+    },
+    {
+        "model": "faq_review.FrequentlyAskedQuestion",
+        "pk": 5,
+        "fields": {
+            "question": "Pertanyaan 5",
+            "answer": "Jawaban pertanyaan 5"
+        }
     }
 ]

@@ -9,7 +9,7 @@ from django.core import serializers
 # Create your views here.
 # @login_required(login_url='/main/login')
 def show_faq_review(request):
-    form = reviewForm(request.POST)
+    form = reviewForm()
     faq = FrequentlyAskedQuestion.objects.all()
 
     context = {
@@ -22,14 +22,22 @@ def show_faq_review(request):
 # @login_required(login_url="/main/login/")
 def add_review(request):
     if request.method == "POST":
+        print("hi")
+        user = request.user
         title = request.POST.get("title")
         review = request.POST.get("review")
         reviewUser.objects.create(
-            title = title, review = review
+            title = title, review = review, user = user
         )
-        JsonResponse({}, status=200)
-    return redirect("faq_review:show_faq_review")
+        return JsonResponse({
+            "title": title,
+            "review": review,
+        }, status=200)
 
-def show_json(request):
+def show_json_faq(request):
     data = FrequentlyAskedQuestion.objects.all()
-    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json") 
+
+def show_json_review(request):
+    data = reviewUser.objects.filter(user = request.user)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")  

@@ -4,7 +4,7 @@
 {% load static %}
 <script>
   $(document).ready(function(){
-      $.getJSON("{% url 'faq_review:show_json' %}", function(data){
+      $.getJSON("{% url 'faq_review:show_json_faq' %}", function(data){
         var count = 0;
           $.each(data, function(index, value){
               console.log(value)
@@ -26,6 +26,44 @@
           })
       })
   })
+
+  $(document).ready(function(){
+        $.getJSON("{% url 'faq_review:show_json_review' %}", function(data){
+            $.each(data, function(index,value){
+              console.log(value)
+                $("#review-card").append( 
+                    `<div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">${value.fields.title}</h5>
+                            <p class="card-text">${value.fields.review}</p>
+                        </div>
+                    </div>`
+                )
+            })
+        })
+
+      $("#form-review").on("submit",function(e) {
+        e.preventDefault() 
+        let title = $("#title").val();
+        let review = $("#review").val();
+        $.ajax({
+          method: "POST",
+          url: "/faq_review/add/",
+          data: {"title":title, "review": review},
+        }).done(function(resp) {
+          console.log(resp)
+          $("#review-card").append(
+            `<div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">${resp.title}</h5>
+                    <p class="card-text">${resp.review}</p>
+                </div>
+            </div>`
+          )
+          $("#modal-review").modal("toggle")
+        });
+      })
+    })
 </script>
 
 <link rel="stylesheet" href="{% static 'css/faq.css' %}">
@@ -47,9 +85,41 @@
             </div>
             <div class="support-button text-center d-flex align-items-center justify-content-center mt-4">
                 <p class="mb-0 px-2">Can't find your answers?</p>
-                <a href="#"> Contact us</a>
+                <a  ref="#"> Contact us</a>
             </div>
+            <div class="support-button text-center d-flex align-items-center justify-content-center mt-4">
+              <p class="mb-0 px-2">Wanna share your experience to other? please share with us!</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-review" data-bs-whatever= "@mdo" id="add-review">Add review</button>
+          </div>
         </div>
     </div>
 </div>  
+
+<div class="modal fade" id="modal-review" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5">Create review</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="form-review">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label class="col-form-label">Title:</label>
+            {{form.title}}
+          </div>
+          <div class="mb-3">
+            <label class="col-form-label">Review:</label>
+            {{form.review}}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" value="submit" class="btn btn-primary" id="btn_submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content %}
