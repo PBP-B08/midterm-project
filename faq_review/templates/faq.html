@@ -28,7 +28,7 @@
   })
 
   $(document).ready(function(){
-        $.getJSON("/faq_review/show_json_faq/", function(data){
+        $.getJSON("/faq_review/show_json_review/", function(data){
             $.each(data, function(index,value){
               console.log(value)
                 $("#review-card").append( 
@@ -65,7 +65,6 @@
       })
     })
 </script>
-
 <link rel="stylesheet" href="{% static 'css/faq.css' %}">
 <div class="faq_area section_padding_130" id="faq">
     <div class="container">
