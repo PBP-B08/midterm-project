@@ -1,7 +1,29 @@
-{%if name%}
-<body>Hello Worldis, {{name}}</body>
+{% extends 'base.html' %}
 
-{% else %}
-<body>Helo Visitor</body>
+{% block content %}
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
 
-{%endif%}
+<body>
+      <div class="wel">
+        
+        <h1 class="text-center">Greetings {{name}}! Hope you have a wonderful day.</h1>
+        <h2 class="text-center">Ready to start Your Journey?</h2>
+        <a class="btn btn-primary" href="#" role="button">Your Adventure Starts Here</a>
+
+    </div>
+
+</body>
+
+<style>
+    .wel{
+        align-content: center;
+    }
+    body{
+        background-color:rgb(203, 230, 245);
+    }
+</style>
+
+{% endblock content %}

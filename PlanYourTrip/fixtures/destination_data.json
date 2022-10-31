@@ -1,0 +1,29 @@
+[
+    {
+        "model":"PlanYourTrip.PlanProperties",
+        "pk":1,
+        "fields":{
+            "destinasi": "Raja Ampat",
+            "aktivitas": "Indoor",
+            "lokasi":"Papua"
+        }
+},
+{
+        "model":"PlanYourTrip.PlanProperties",
+        "pk":2,
+        "fields":{
+            "destinasi": "Pulai Kei",
+            "aktivitas": "Indoor",
+            "lokasi":"Sulawesi"
+        }
+    },
+    {
+        "model":"PlanYourTrip.PlanProperties",
+        "pk":3,
+        "fields":{
+            "destinasi": "Canggu",
+            "aktivitas": "Outdoor",
+            "lokasi":"Bali"
+        }
+    }
+]
