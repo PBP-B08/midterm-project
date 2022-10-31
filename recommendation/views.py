@@ -2,7 +2,7 @@ from multiprocessing import context
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from recommendation.forms import AreaForm, ProvinceForm
-from recommendation.models import Province
+from recommendation.models import Area, Province
 from django.core import serializers
 
 # Create your views here.
@@ -13,16 +13,6 @@ def index(request):
 
 
 def addProvince(request):
-    # context = {}
-    # if request.method == 'POST':
-    #     form = ProvinceForm(request.POST, request.FILES)
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect('/recommendation/')
-    # else:
-    #     form = ProvinceForm()
-    # context['form'] = form
-    # return render(request, 'addProvince.html', context)
     if request.method == 'POST':
         title = request.POST.get('title')
         header = request.POST.get('header')
@@ -32,7 +22,7 @@ def addProvince(request):
             header=header,
             summary=summary
         )
-        province.save()
+        # province.save()
         return JsonResponse(
             {
                 "pk": province.id,
@@ -60,30 +50,58 @@ def delete_province(request, pk):
         status=200)
 
 
-def addArea(request):
-    context = {}
+def addArea(request, pk):
     if request.method == 'POST':
-        form = AreaForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('/recommendation/')
-    else:
-        form = AreaForm()
-    context['form'] = form
-    return render(request, 'addArea.html', context)
+        title = request.POST.get('title')
+        province = Province.objects.get(id=pk)
+        summary = request.POST.get('summary')
+        description = request.POST.get('description')
+        area = Area.objects.create(
+            title=title,
+            province=province,
+            summary=summary,
+            description=description
+        )
+        # return HttpResponse(serializers.serialize("json", [area, ]), content_type="application/json")
+        return JsonResponse(
+            {
+                "pk": area.id,
+                "fields": {
+                    "title": area.title,
+                    # "province": area.province,
+                    "summary": area.summary,
+                    "description": area.description
+                }
+            },
+            status=200)
 
 
-# def createRecommendation(request):
+def delete_area(request, pk):
+    area = Area.objects.get(pk=pk)
+    area.delete()
+    return JsonResponse(
+        {
+            "pk": area.id,
+            "fields": {
+                "title": area.title,
+                "province": area.province,
+                "summary": area.summary,
+                "description": area.description
+            }
+        },
+        status=200)
+
+# def addArea(request):
 #     context = {}
 #     if request.method == 'POST':
-#         form = RecommendationForm(request.POST, request.FILES)
+#         form = AreaForm(request.POST, request.FILES)
 #         if form.is_valid():
 #             form.save()
 #             return redirect('/recommendation/')
 #     else:
-#         form = RecommendationForm()
+#         form = AreaForm()
 #     context['form'] = form
-#     return render(request, 'createRecommendation.html', context)
+#     return render(request, 'addArea.html', context)
 
 
 def detail(request, pk):
@@ -95,3 +113,10 @@ def detail(request, pk):
 def show_json(request):
     province = Province.objects.all()
     return HttpResponse(serializers.serialize("json", province), content_type="application/json")
+
+# show json area based on province id
+
+
+def show_area_json(request, pk):
+    area = Area.objects.filter(province=pk)
+    return HttpResponse(serializers.serialize("json", area), content_type="application/json")
