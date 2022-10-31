@@ -1,9 +1,15 @@
-{% extends 'base.html' %}
 {% load static %}
 
-{% block meta %}
-<title>Login Page</title>
-{% endblock meta %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    {% block meta %}
+        <title>Login Page</title>
+    {% endblock meta %}
+</head>
 
 {% block content %}
   <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"></link>
