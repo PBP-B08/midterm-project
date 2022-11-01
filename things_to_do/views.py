@@ -2,6 +2,7 @@ from recommendation.models import Province
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
+from django.db.models.functions import Extract
 from django.contrib.auth.decorators import login_required
 from .forms import EventForm, FoodForm
 
@@ -75,6 +76,7 @@ def json_food(request, prov_id):
 
 @login_required(login_url='main:login')
 def add_event(request):
+    # months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Des"]
     if request.method == 'POST':
         prov_id = request.POST.get("prov_id")
         province = Province.objects.get(pk=prov_id)
@@ -89,15 +91,23 @@ def add_event(request):
             description=description,
             image=image
         )
+
+        # first_dash = str(event.date).index("-")
+        # second_dash = str(event.date).index("-", first_dash + 1)
+        # third_dash = str(event.date).index("-", second_dash + 1)
+
         return JsonResponse(
             {
                 "pk": event.id, 
                 "fields": {
                     "province": province.title,
                     "name": event.name, 
-                    "date": event.date, 
+                    "date":event.date,
+                    # "day": str(event.date)[second_dash+1:third_dash], 
+                    # "month": months[int(str(event.date)[first_dash+1:second_dash]) - 1],
                     "description": event.description, 
-                    "image": event.image}
+                    "image": event.image
+                    }
             }, 
             status=200)
 

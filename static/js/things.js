@@ -24,31 +24,57 @@ const addFoodCard = function(food) {
     }
 }
 
+// const addEventCard = function(event) {
+//     $("#event-card").append(
+//         `<!-- Column -->
+//         <div id="event-${event.pk}" style="width:300px;" class="content-center my-4 w-full mx-3 md:w-1/2 md:my-2 lg:my-4 lg:w-1/3 event">
+//             <!-- Article -->
+//             <article style="width:300px;" class="mx-0 content-center justify-center overflow-hidden shadow-lg object-cover ease-in-out duration-500 hover:scale-105 card-event">
+//                 <a>
+//                     <!-- <img alt="${event.fields.name}" class="block h-auto w-full" src="${event.fields.image}"> -->
+//                     <img alt="Placeholder" class="block w-full img-event" src="${event.fields.image}">
+//                 </a>
+//                 <header id="eventbtn-${event.pk}" class="text-center items-center justify-between bg-white/75 leading-tight p-2 md:p-4">
+//                     <h1 class="text-lg">
+//                         ${event.fields.name}
+//                     </h1>
+//                     <h1 class="text-grey-darker text-lg">
+//                     ${event.fields.date}
+//                     </h1>
+//                     <p class="text-grey-darker text-md">
+//                         ${event.fields.description}
+//                     </p>
+//                 </header>
+//             </article>
+//             <!-- END Article -->
+//         </div>
+//         <!-- END Column -->`
+//         );
+//     if (role == 'admin') {
+//         $(`#eventbtn-${event.pk}`).append(
+//                 `<div class="flex my-3 w-fit items-center m-auto space-x-3 mx-30 bg-indigo-600 px-3 py-1 text-white rounded-md cursor-pointer hover:shadow-lg">
+//                     <button onclick="deleteEvent(${event.pk})" type="button">
+//                     Delete
+//                     </button>
+//                 </div>`);
+// }
+// }
+
 const addEventCard = function(event) {
     $("#event-card").append(
-        `<!-- Column -->
-        <div id="event-${event.pk}" style="width:300px;" class="content-center my-4 w-full mx-3 md:w-1/2 md:my-2 lg:my-4 lg:w-1/3 event">
-            <!-- Article -->
-            <article style="width:300px;" class="mx-0 content-center justify-center overflow-hidden shadow-lg object-cover ease-in-out duration-500 hover:scale-105 card-event">
-                <a>
-                    <!-- <img alt="${event.fields.name}" class="block h-auto w-full" src="${event.fields.image}"> -->
-                    <img alt="Placeholder" class="block w-full img-event" src="${event.fields.image}">
-                </a>
-                <header id="eventbtn-${event.pk}" class="text-center items-center justify-between bg-white/75 leading-tight p-2 md:p-4">
-                    <h1 class="text-lg">
-                        ${event.fields.name}
-                    </h1>
-                    <h1 class="text-grey-darker text-lg">
-                    ${event.fields.date}
-                    </h1>
-                    <p class="text-grey-darker text-md">
-                        ${event.fields.description}
-                    </p>
-                </header>
-            </article>
-            <!-- END Article -->
+        `<div id="event-${event.pk}" class="relative flex items-end w-full text-left bg-center bg-cover h-96 dark:bg-white-500 ease-in-out duration-500 hover:scale-105 " style="background-image: url(${event.fields.image});">
+        <div class="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-b dark:via-transparent dark:from-gray-900 dark:to-gray-900"></div>
+        <div class="absolute top-0 left-0 right-0 flex items-center justify-between mx-5 mt-3">
+            <a rel="noopener noreferrer" class="px-3 py-2 text-lg font-semibold tracking-wider uppercase dark:text-gray-100 bgundefined">${event.fields.name}</a>
+            <div class="flex flex-col justify-start text-center dark:text-gray-100">
+                <span class="text-lg font-semibold leading-none tracking-wide">${event.fields.date}</span>
+                <!-- <span class="leading-none uppercase">${event.fields.month}</span> -->
+            </div>
         </div>
-        <!-- END Column -->`
+        <h2 id="eventbtn-${event.pk}" class="z-10 p-5">
+            <a rel="noopener noreferrer" class="font-medium text-md dark:text-gray-100">${event.fields.description}</a>
+        </h2>
+    </div>`
         );
     if (role == 'admin') {
         $(`#eventbtn-${event.pk}`).append(
