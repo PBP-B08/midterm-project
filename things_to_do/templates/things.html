@@ -4,37 +4,402 @@
 {% block meta %}
 <title>{{ province }} - Things to Do</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    // get json food data
-    $.getJSON( `json/food/${prov_id}`, function( data ) {
-        data.forEach(food => {
-            // addCard(element);
-        });
-    });
-    // get json event data
-    $.getJSON( `json/event/${prov_id}`, function( data ) {
-        data.forEach(event => {
-            // addCard(element);
-        });
-    });
-</script>
+<!-- <link href="https://cdn.jsdelivr.[net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script> -->
+<style>
+    .modal {
+        text-align: center;
+    }
+
+    .modal::before {
+        content: "";      
+        display: inline-block;
+        height: 100%;    
+        margin-right: -4px;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .modal-dialog { 
+        display: inline-block;  
+        text-align: left;   
+        vertical-align: middle;
+    }
+</style>
 {% endblock meta %}
 
 {% block content %}
+<!-- Picture -->
+<div class="relative mt-30 inset-0 w-full" id="grand-pic">
+    <!-- <img src="https://picsum.photos/600/400/?random" class="h-80 md:h-100 inset-0 w-full top-1/2 left-1/2" alt="{{ province }}"> -->
+    <div style="padding: 100px;">
+      <h1 class="text-5xl text-center text-white font-bold grand-title">Things to do<br>in {{ province }}</h1>
+    </div>
+    <div class="relative mt-30 top-1/2 px-4 py-2 opacity-100">
+    </div>   
+  </div>
+  
+<!-- Breadcrumb -->
+<nav class="flex px-5 mt-3" aria-label="Breadcrumb">
+    <ol class="inline-flex items-center space-x-1 md:space-x-3">
+      <li class="inline-flex items-center">
+        <a href="/" class="inline-flex items-center text-sm font-medium text-black-700 hover:text-black-900 dark:text-black-400 dark:hover:text-white">
+          <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+          Home
+        </a>
+      </li>
+      <li>
+        <div class="flex items-center">
+          <svg class="w-6 h-6 text-black-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+          <a href="/things-to-do/" class="ml-1 text-sm font-medium text-black-700 hover:text-black-900 md:ml-2 dark:text-black-400 dark:hover:text-white">Things to do</a>
+        </div>
+      </li>
+      <li aria-current="page">
+        <div class="flex items-center">
+          <svg class="w-6 h-6 text-black-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+          <span class="ml-1 text-sm font-medium text-black-500 md:ml-2 dark:text-black-400">{{ province }}</span>
+        </div>
+      </li>
+    </ol>
+  </nav>
+  <!-- <h1 class="my-20 text-5xl text-center text-white font-bold grand-title">Things to do<br>in {{ province }}</h1> -->
+
 <div class="px-4">
   <div class="
-        justify-center
-        items-center
-        bg-white
-        mx-auto
-        max-w-2xl
-        rounded-lg
-        my-16
-        p-16
-      ">
-    <div style="margin-bottom:30px;">
-        <h1 class="text-2xl font-medium">Things to Do</h1>
-        <h1 class="text-2xl font-medium">in {{ province }}</h1>
+  justify-center
+  items-center
+  mx-auto
+  max-w
+  rounded-lg
+  mt-16
+  px-20
+  text-center
+  ">
+    <div>
+      <h1 class="text-4xl font-medium grand-title">FOODS</h1>
+      {% if user.is_superuser %}
+          <button class="mt-10 w-fit space-x-3 py-3 px-6 m-auto bg-indigo-600 text-white rounded-lg  transition-all duration-400 transform hover:scale-105 cursor-pointer hover:shadow-lg" id="modalfood-open" type="button" data-modal-toggle="modalfood">
+            Add Food
+          </button>
+      {% endif %}
+
+      <!-- <div id="food-card" class="bg-white flex w-fit py-3 px-6 -mx-3 lg:-mx-4"></div> -->
     </div>
+  </div>
+  
+  <!-- Main modal -->
+  <div id="modalfood" tabindex="-1" aria-hidden="true" class="modal hidden fixed bg-gray-600 bg-opacity-50 overflow-y-auto overflow-x-hidden top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
+      <div class="modal-dialog relative p-4 w-full max-w-md h-full md:h-auto">
+          <!-- Modal content -->
+          <div class="relative bg-white rounded-lg shadow">
+              <button id="modalfood-close" type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-toggle="modalfood">
+                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                  <span class="sr-only">Close modal</span>
+              </button>
+              <div class="py-6 px-6 lg:px-8">
+                  <h3 class="mb-4 text-xl font-medium text-gray-900">Add {{ province }}'s Food</h3>
+                  <form class="space-y-6" id="add-food" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <input type="hidden" name="prov_id" id="prov_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ prov_id }}" required>
+                      <div>
+                          <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
+                          <input type="text" name="name" id="fname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Name" required>
+                      </div>
+                      <div>
+                          <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Image URL</label>
+                          <input type="text" name="image" id="fimage" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Image URL" required>
+                      </div>
+                      <div>
+                          <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
+                          <textarea name="description" id="fdescription" cols="30" rows="5" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Description" required></textarea>
+                          <!-- <input type="text" name="description" id="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Description" required> -->
+                      </div>
+                      <button type="button" onclick="addFood()" class="bg-indigo-600 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add Food</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div> 
+</div>
+<div id="food-card" class="flex flex-wrap rounded-lg justify-center w-full py-3 px-6 -mx-3 lg:-mx-4"></div>
+
+
+
+<div class="px-4">
+  <div class="
+  justify-center
+  items-center
+  text-center
+  mx-auto
+  max-w
+  rounded-lg
+  m-16
+  px-16
+  ">
+    <div style="margin-bottom:30px;">
+      <h1 class="text-4xl font-medium grand-title">ANNUAL EVENTS</h1>
+      {% if user.is_superuser %}
+        <button class="mt-10 w-fit space-x-3 py-3 px-6 m-auto bg-indigo-600 text-white rounded-lg  transition-all duration-400 transform hover:scale-105 cursor-pointer hover:shadow-lg" id="modalevent-open" type="button" data-modal-toggle="modalevent">
+          Add Event
+        </button>
+      {% endif %}
+      <div id="event-card" class="flex flex-wrap w-full py-6 m-auto -mx-4 lg:-mx-4"></div>
+        
+    </div>
+
+    <!-- Main modal -->
+    <div id="modalevent" tabindex="-1" aria-hidden="true" class="modal hidden fixed bg-gray-600 bg-opacity-50 overflow-y-auto overflow-x-hidden top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
+      <div class="modal-dialog relative p-4 w-full max-w-md h-full md:h-auto">
+          <!-- Modal content -->
+          <div class="relative bg-white rounded-lg shadow">
+              <button id="modalevent-close" type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-toggle="modalevent">
+                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                  <span class="sr-only">Close modal</span>
+              </button>
+              <div class="py-6 px-6 lg:px-8">
+                  <h3 class="mb-4 text-xl font-medium text-gray-900">Add {{ province }}'s Event</h3>
+                  <form class="space-y-6" id="add-event" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <input type="hidden" name="prov_id" id="prov_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ prov_id }}" required>
+                      <div>
+                          <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
+                          <input type="text" name="name" id="ename" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Name" required>
+                      </div>
+                      <div>
+                        <label for="date" class="block mb-2 text-sm font-medium text-gray-900">Date</label>
+                        <input type="date" name="date" id="edate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Date" required>
+                      </div>
+                      <div>
+                          <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Image URL</label>
+                          <input type="text" name="image" id="eimage" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Image URL" required>
+                      </div>
+                      <div>
+                          <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
+                          <textarea name="description" id="edescription" cols="30" rows="5" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Description" required></textarea>
+                          <!-- <input type="text" name="description" id="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Description" required> -->
+                      </div>
+                      <button type="button" onclick="addEvent()" class="bg-indigo-600 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add Event</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+    </div> 
+  </div>
+</div>
+<script>
+  var prov_id = "{{ prov_id }}";
+  var role = "{{ role }}";
+  // get json event data
+  $.getJSON( `/things-to-do/json/food/${prov_id}/`, function( data ) {
+      data.forEach(food => {
+          addFoodCard(food);
+      });
+  });
+  // get json event data
+  $.getJSON( `/things-to-do/json/event/${prov_id}/`, function( data ) {
+      data.forEach(event => {
+          addEventCard(event);
+      });
+  });
+
+  const addFoodCard = function(food) {
+    $("#food-card").append(
+      `<div id="food-${food.pk}" class="mx-4 my-6 card text-center">
+        <div class="card-front" style="background-image:url(${food.fields.image});"><figcaption>${food.fields.name}</figcaption></div>
+        <div id="back-${food.pk}" style="background-image:url(${food.fields.image});" class="card-back">
+          <div class="backdrop-blur-sm bg-white/30">
+            <h2>${food.fields.name}<br><span>${food.fields.description}</span></h2>
+          </div>
+        </div>
+      </div>`
+    )
+    if (role == 'admin') {
+      $(`#back-${food.pk}`).append(
+          `<div class="flex relative">
+              <div class="my-3 w-fit items-center m-auto space-x-3 bg-indigo-600 px-3 py-1 text-white rounded-md cursor-pointer hover:shadow-lg">
+              <button onclick="updateFood(${food.pk})" type="button">
+                Update
+              </button>
+            </div>
+            <div class="my-3 w-fit items-center m-auto space-x-3 bg-indigo-600 px-3 py-1 text-white rounded-md cursor-pointer hover:shadow-lg">
+              <button onclick="deleteFood(${food.pk})" type="button">
+                Delete
+              </button>
+           </div>
+         </div>`);
+    }
+  }
+
+  const addEventCard = function(event) {
+  $("#event-card").append(
+      `<!-- Column -->
+      <div id="event-${event.pk}" class="content-center my-4 px-1 w-full md:w-1/2 md:my-2 lg:my-4 lg:px-4 lg:w-1/3 event">
+          <!-- Article -->
+          <article class="content-center justify-center overflow-hidden shadow-lg object-cover ease-in-out duration-500 hover:scale-105 card-event">
+              <a>
+                  <!-- <img alt="${event.fields.name}" class="block h-auto w-full" src="${event.fields.image}"> -->
+                  <img alt="Placeholder" class="block w-full img-event" src="${event.fields.image}">
+              </a>
+              <header id="eventbtn-${event.pk}" class="items-center justify-between bg-white/75 leading-tight p-2 md:p-4">
+                  <h1 class="text-lg">
+                      ${event.fields.name}
+                  </h1>
+                  <h1 class="text-grey-darker text-lg">
+                    ${event.fields.date}
+                  </h1>
+                  <p class="text-grey-darker text-md">
+                      ${event.fields.description}
+                  </p>
+              </header>
+          </article>
+          <!-- END Article -->
+      </div>
+      <!-- END Column -->`
+      );
+    if (role == 'admin') {
+      $(`#eventbtn-${event.pk}`).append(
+              `<div class="flex my-3 w-fit items-center m-auto space-x-3 mx-30 bg-indigo-600 px-3 py-1 text-white rounded-md cursor-pointer hover:shadow-lg">
+                <button onclick="updateEvent(${event.pk})" type="button">
+                  Update
+                </button>
+                </div>
+                <div class="flex my-3 w-fit items-center m-auto space-x-3 mx-30 bg-indigo-600 px-3 py-1 text-white rounded-md cursor-pointer hover:shadow-lg">
+                  <button onclick="deleteEvent(${event.pk})" type="button">
+                    Delete
+                  </button>
+                </div>`);
+    }
+  }
+  let foodModal;
+  let openFoodModalBtn;
+  let closeFoodModalBtn;
+
+  let eventModal;
+  let openEventModalBtn;
+  let closeEventModalBtn;
+
+  if (role == "admin") {
+      // Grabs all the Elements by their IDs which we had given them
+      foodModal = document.getElementById("modalfood");
+      openFoodModalBtn = document.getElementById("modalfood-open");
+      closeFoodModalBtn = document.getElementById("modalfood-close");
+
+      eventModal = document.getElementById("modalevent");
+      openEventModalBtn = document.getElementById("modalevent-open");
+      closeEventModalBtn = document.getElementById("modalevent-close");
+
+      // We want the modal to open when the Open button is clicked
+      openFoodModalBtn.onclick = function() {
+          $("#modalfood").fadeIn();
+      }
+      // We want the modal to close when the Close button is clicked
+      closeFoodModalBtn.onclick = function() {
+          $("#modalfood").fadeOut();
+      }
+
+      // The modal will close when the user clicks anywhere outside the modal
+      window.onclick = function(event) {
+          if (event.target == eventModal) {
+            closeEventModalBtn.click();
+          }
+          else if (event.target == foodModal) {
+            closeFoodModalBtn.click();
+          }
+      }
+
+      // We want the modal to open when the Open button is clicked
+      openEventModalBtn.onclick = function() {
+          $("#modalevent").fadeIn();
+      }
+      // We want the modal to close when the Close button is clicked
+      closeEventModalBtn.onclick = function() {
+          $("#modalevent").fadeOut();
+      }
+  }
+  
+  const addFood = function() {
+    var formData = $("#add-food").serialize();
+    if ($("#fname").val() && $("#fdescription").val() && $("#fimage").val()) {
+      $.ajax({
+            type: "POST",
+            url: "/things-to-do/add/food",
+            data: formData,
+            dataType: "json",
+            encode: true,
+            }).done(function (data) {
+              addFoodCard(data);
+              $("#add-food").trigger("reset");
+              closeFoodModalBtn.click();
+          })
+    }
+  }
+
+  const addEvent = function() {
+    var formData = $("#add-event").serialize();
+    if ($("#ename").val() && $("#edescription").val() && $("#eimage").val() && $("#edate").val()) {
+      $.ajax({
+            type: "POST",
+            url: "/things-to-do/add/event",
+            data: formData,
+            dataType: "json",
+            encode: true,
+            }).done(function (data) {
+              addEventCard(data);
+              $("#add-event").trigger("reset");
+              closeEventModalBtn.click();
+          })
+    }
+  }
+
+  // function updateFood(pk) {
+  //   $.ajax({
+  //           type: "DELETE",
+  //           headers: { "X-CSRFToken": document.getElementsByName("csrfmiddlewaretoken")[0].value },
+  //           url: `/things-to-do/delete/food/${pk}`,
+  //           encode: true,
+  //         }).done(function (data) {
+  //             $(`#food-${pk}`).remove();
+  //         })
+  // }
+
+  function deleteFood(pk) {
+    $.ajax({
+            type: "DELETE",
+            headers: { "X-CSRFToken": document.getElementsByName("csrfmiddlewaretoken")[0].value },
+            url: `/things-to-do/delete/food/${pk}`,
+            encode: true,
+          }).done(function (data) {
+              $(`#food-${pk}`).remove();
+          })
+  }
+
+  function deleteEvent(pk) {
+    $.ajax({
+            type: "DELETE",
+            headers: { "X-CSRFToken": document.getElementsByName("csrfmiddlewaretoken")[0].value },
+            url: `/things-to-do/delete/event/${pk}`,
+            encode: true,
+          }).done(function (data) {
+              $(`#event-${pk}`).remove();
+          })
+  }
+
+  var safeColors = ['#9F2B68', '#DE3163', '#811331', '#FF7F50',
+                  '#F88379', '#AA336A', '#C9A9A6', '#FF69B4', '#E37383',
+                '#FFB6C1', '#FF00FF', '#770737', '#D8BFD8',
+              '#DA70D6', '#F8C8DC', '#FAA0A0', '#FFC0CB', '#F89880', 
+            '#673147', '#A95C68', '#800080', '#E30B5C', '	#953553', 
+          '#F33A6A', '#C21E56'];
+  var rand = function() {
+      return Math.floor(Math.random()*safeColors.length);
+  };
+  var randomColor = function() {
+      return safeColors[rand()];
+  };
+
+  $("#grand-pic").css("background", randomColor());
+
+</script>
 
 {% endblock content %}
