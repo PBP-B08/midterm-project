@@ -20,5 +20,3 @@ urlpatterns = [
     path('plan/', include('PlanYourTrip.urls')),
 
 ]
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
