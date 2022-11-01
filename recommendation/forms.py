@@ -9,13 +9,15 @@ class ProvinceForm(forms.ModelForm):
         attrs={'class': 'form-control', 'placeholder': 'Enter a brief header'}))
     summary = forms.CharField(max_length=500, widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Enter a brief summary'}))
+    image = forms.URLField(max_length=500, widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Enter a URL for an image'}))
 
     class Meta:
         model = Province
-        fields = ['title', 'header', 'summary']
+        fields = ['title', 'header', 'summary', 'image']
 
 
 class AreaForm(forms.ModelForm):
     class Meta:
         model = Area
-        fields = ['title', 'province', 'summary', 'description']
+        fields = ['title', 'province', 'summary', 'description', 'image']

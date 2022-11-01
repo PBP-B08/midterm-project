@@ -1,3 +1,4 @@
+from email.mime import image
 from multiprocessing import context
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
@@ -17,19 +18,21 @@ def addProvince(request):
         title = request.POST.get('title')
         header = request.POST.get('header')
         summary = request.POST.get('summary')
+        image = request.POST.get('image')
         province = Province.objects.create(
             title=title,
             header=header,
-            summary=summary
+            summary=summary,
+            image=image
         )
-        # province.save()
         return JsonResponse(
             {
                 "pk": province.id,
                 "fields": {
                     "title": province.title,
                     "header": province.header,
-                    "summary": province.summary
+                    "summary": province.summary,
+                    "image": province.image
                 }
             },
             status=200)
@@ -56,11 +59,13 @@ def addArea(request, pk):
         province = Province.objects.get(id=pk)
         summary = request.POST.get('summary')
         description = request.POST.get('description')
+        image = request.POST.get('image')
         area = Area.objects.create(
             title=title,
             province=province,
             summary=summary,
-            description=description
+            description=description,
+            image=image
         )
         # return HttpResponse(serializers.serialize("json", [area, ]), content_type="application/json")
         return JsonResponse(
@@ -70,7 +75,8 @@ def addArea(request, pk):
                     "title": area.title,
                     # "province": area.province,
                     "summary": area.summary,
-                    "description": area.description
+                    "description": area.description,
+                    "image": area.image
                 }
             },
             status=200)
