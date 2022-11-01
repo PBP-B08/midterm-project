@@ -44,6 +44,12 @@
     </div>`);
   }
 
+  // function for delete all province card
+  const deleteAllCard = () => {
+    $(".row").empty();
+  }
+
+
   // get data json
   const getData = () => {
     $.ajax({
@@ -69,8 +75,7 @@
   // function handler for add province asynchronously
   var addProvince = function() {
     var formData = $("#add-province").serialize();
-
-    if ($("#title").val() && $("#header").val() && $('#summary')) { // ensure the form is filled
+    if ($("#title").val() && $("#header").val() && $('#summary')) {
       $.ajax({
         type: "POST",
         url: "addProvince/",
@@ -97,6 +102,10 @@
       encode: true,
     }).done(function (data) {
       $(`#province-${id}`).remove();
+      // deleteCard(id);
+      deleteAllCard();
+      getData();
+      console.log("test");
     })
   }
 </script>
@@ -234,31 +243,6 @@
   <div class="row rows-cols-1 row-cols-md-3 g-4 justify-content-center">
   </div>
 </div>
-
-<!-- {% for recommendation in recommendationList %}
-<div class="px-4">
-  <div class="
-        bg-white
-        mx-auto
-        max-w-2xl
-        rounded-lg
-        my-8
-        p-16
-      ">
-    <h1 class="text-2xl font-medium">{{ recommendation.title }}</h1>
-    <p>{{ recommendation.summary }}</p>
-    <p class="mt-4 text-lg font-normal">{{ recommendation.description }}</p>
-    <div class="flex mt-10 w-fit items-center space-x-3 py-3 px-6 bg-indigo-600 text-white rounded-lg  transition-all duration-400 transform hover:scale-105 cursor-pointer hover:shadow-lg">
-      <a href="detail/{{ recommendation.id }}">
-        <button class="text-lg text-md">Detail</button>
-      </a>
-    </div>
-  </div>
-</div>
-{% endfor %} -->
-
-
-
 
 <div class="px-4">
   <div class="

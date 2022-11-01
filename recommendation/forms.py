@@ -2,12 +2,6 @@ from django import forms
 from .models import Province, Area
 
 
-# class RecommendationForm(forms.ModelForm):
-#     class Meta:
-#         model = Recommendation
-#         fields = ['title', 'image', 'description', 'summary']
-
-
 class ProvinceForm(forms.ModelForm):
     title = forms.CharField(max_length=128, widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Province title'}))
