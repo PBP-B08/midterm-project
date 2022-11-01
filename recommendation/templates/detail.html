@@ -19,7 +19,7 @@
         <h1 class="text-2xl font-medium">${ area.fields.title }</h1>
         <p>${ area.fields.summary }</p>
         <div class="flex mt-10 w-fit items-center space-x-3 py-3 px-6 bg-indigo-600 text-white rounded-lg  transition-all duration-400 transform hover:scale-105 cursor-pointer hover:shadow-lg">
-          <a href="detail/${ area.pk }/">
+          <a href="detailArea/${ area.pk }/">
             <button class="text-lg text-md">Detail</button>
           </a>
         </div>
@@ -81,7 +81,7 @@
     $.ajax({
       type: "DELETE",
       headers: { "X-CSRFToken": document.getElementsByName("csrfmiddlewaretoken")[0].value },
-      url: "deleteArea/<int:pk>/".replace('<int:pk>', id),
+      url: "deleteArea/<int:area_pk>/".replace('<int:area_pk>', id),
       data: {
         id: id
       },

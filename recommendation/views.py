@@ -76,38 +76,33 @@ def addArea(request, pk):
             status=200)
 
 
-def delete_area(request, pk):
-    area = Area.objects.get(pk=pk)
+def delete_area(request, pk, area_pk):
+    province = Province.objects.get(id=pk)
+    area = Area.objects.get(pk=area_pk)
     area.delete()
     return JsonResponse(
         {
             "pk": area.id,
             "fields": {
                 "title": area.title,
-                "province": area.province,
+                # "province": area.province,
                 "summary": area.summary,
                 "description": area.description
             }
         },
         status=200)
 
-# def addArea(request):
-#     context = {}
-#     if request.method == 'POST':
-#         form = AreaForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('/recommendation/')
-#     else:
-#         form = AreaForm()
-#     context['form'] = form
-#     return render(request, 'addArea.html', context)
-
 
 def detail(request, pk):
     province = Province.objects.get(id=pk)
     context = {'province': province}
     return render(request, 'detail.html', context)
+
+
+def detail_area(request, pk, area_pk):
+    area = Area.objects.get(id=area_pk)
+    context = {'area': area}
+    return render(request, 'detail_area.html', context)
 
 
 def show_json(request):
