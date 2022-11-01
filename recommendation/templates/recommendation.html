@@ -29,6 +29,7 @@
             p-16
           ">
         <h1 class="text-2xl font-medium">${ province.fields.title }</h1>
+        <img src="${ province.fields.image }" alt="province image">
         <p>${ province.fields.summary }</p>
         <div class="flex mt-10 w-fit items-center space-x-3 py-3 px-6 bg-indigo-600 text-white rounded-lg  transition-all duration-400 transform hover:scale-105 cursor-pointer hover:shadow-lg">
           <a href="detail/${ province.pk }/">
@@ -75,7 +76,7 @@
   // function handler for add province asynchronously
   var addProvince = function() {
     var formData = $("#add-province").serialize();
-    if ($("#title").val() && $("#header").val() && $('#summary')) {
+    if ($("#title").val() && $("#image") && $("#header").val() && $('#summary')) {
       $.ajax({
         type: "POST",
         url: "addProvince/",
@@ -177,11 +178,17 @@
             </label>
             <textarea type="text" id="summary" name="summary" cols="60" rows="5" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
           </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="image">
+              Image
+            </label>
+            <input type="text" id="image" name="image" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="enter image url"></textarea>
+          </div>
           
-          <!-- <input type="text" id="title" name="title" placeholder="Title" class="form-control" maxlength="255" required> -->
-          <!-- <input type="text" id="header" name="header" placeholder="Header" class="form-control" maxlength="255" required> -->
-          <!-- <input type="text" id="summary" name="summary" placeholder="Summary" class="form-control" maxlength="255" required> -->
-          <!-- <textarea name="description" id="description" cols="40" rows="10" placeholder="Description" class="form-control" required="" id="id_description"></textarea> -->
+          <!-- <input type="text" id="title" name="title" placeholder="Title" class="form-control" maxlength="255" required>
+          <input type="text" id="header" name="header" placeholder="Header" class="form-control" maxlength="255" required>
+          <input type="text" id="summary" name="summary" placeholder="Summary" class="form-control" maxlength="255" required>
+          <textarea name="description" id="description" cols="40" rows="10" placeholder="Description" class="form-control" required="" id="id_description"></textarea> -->
 
         </form>
         
