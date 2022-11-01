@@ -14,9 +14,16 @@ def show_faq_review(request):
 
     context = {
         'form': form,
-        'faq': faq
+        'faq': faq,
+        'user': request.user
     }
     return render(request, 'faq.html', context)
+
+def show_username(request,id):
+    user = reviewUser.objects.filter(pk=id)
+    for i in user:
+        hasil = i.__str__()
+    return hasil
 
 @csrf_exempt
 # @login_required(login_url="/main/login/")
@@ -39,5 +46,5 @@ def show_json_faq(request):
     return HttpResponse(serializers.serialize("json", data), content_type="application/json") 
 
 def show_json_review(request):
-    data = reviewUser.objects.filter(user = request.user)
+    data = reviewUser.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")  
