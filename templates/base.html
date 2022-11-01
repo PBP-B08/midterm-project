@@ -61,10 +61,10 @@
           <li>
             <a class="md:p-4 py-2 block hover:text-purple-400" href="/faq_review/">FAQ</a>
           </li>
-          <li>
-            <a class="md:p-4 py-2 block hover:text-purple-400" href="/profile/">Profile</a>
-          </li>
           {% if user.is_authenticated %}
+            <li>
+              <a class="md:p-4 py-2 block hover:text-purple-400" href="/profile/">Profile</a>
+            </li>
             <li>
               <a class="md:p-4 py-2 block text-red-500" href="{% url 'main:logout' %}">Logout</a>
             </li>
