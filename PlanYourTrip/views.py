@@ -3,6 +3,7 @@ from multiprocessing import context
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 from PlanYourTrip.models import PlanProperties
 from .forms import InputForm
 from django.contrib.auth.models import User
@@ -12,6 +13,7 @@ from django.contrib.auth.models import User
 def say_helo(request):
     return render(request, 'welcome.html', {'nama': User.get_username})
 
+@login_required(login_url='main.login')
 def say_plan(request):
     data_destinasi = PlanProperties.objects.all()
     context = {
@@ -20,6 +22,7 @@ def say_plan(request):
     }
     return render(request, "helo.html", context)
 
+@login_required(login_url='main.login')
 def say_form(request):
     items = PlanProperties.objects.filter(user=request.user)
 
@@ -38,6 +41,7 @@ def say_form(request):
     return render(request, 'helo.html', context)
 
 
+@login_required(login_url='main.login')
 def delete_form(request, id):
     user = request.user
     temp = PlanProperties.objects.get(pk=id)
