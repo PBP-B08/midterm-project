@@ -1,0 +1,277 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>{{ province }} - Things to Do</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/things.css' %}">
+{% endblock meta %}
+
+{% block content %}
+
+<!-- Picture -->
+<div class="relative mt-30 inset-0 w-full" id="grand-pic">
+    <!-- <img src="https://picsum.photos/600/400/?random" class="h-80 md:h-100 inset-0 w-full top-1/2 left-1/2" alt="{{ province }}"> -->
+    <div style="padding: 100px;">
+      <h1 class="text-5xl text-center text-white font-bold grand-title">Things to do<br>in {{ province }}</h1>
+    </div>
+    <div class="relative mt-30 top-1/2 px-4 py-2 opacity-100">
+    </div>   
+  </div>
+  
+<!-- Breadcrumb -->
+<nav class="flex px-5 mt-3" aria-label="Breadcrumb">
+    <ol class="inline-flex items-center space-x-1 md:space-x-3">
+      <li class="inline-flex items-center">
+        <a href="/" class="inline-flex items-center text-sm font-medium text-black-700 hover:text-black-900 dark:text-black-400 dark:hover:text-white">
+          <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+          Home
+        </a>
+      </li>
+      <li>
+        <div class="flex items-center">
+          <svg class="w-6 h-6 text-black-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+          <a href="/things-to-do/" class="ml-1 text-sm font-medium text-black-700 hover:text-black-900 md:ml-2 dark:text-black-400 dark:hover:text-white">Things to do</a>
+        </div>
+      </li>
+      <li aria-current="page">
+        <div class="flex items-center">
+          <svg class="w-6 h-6 text-black-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+          <span class="ml-1 text-sm font-medium text-black-500 md:ml-2 dark:text-black-400">{{ province }}</span>
+        </div>
+      </li>
+    </ol>
+  </nav>
+  <!-- <h1 class="my-20 text-5xl text-center text-white font-bold grand-title">Things to do<br>in {{ province }}</h1> -->
+  
+<!-- <div>
+  <div id="success-food" class="hidden alert success-alert">
+    <h3>Berhasil menambahkan makanan baru</h3>
+    <a class="close">&times;</a>
+  </div>
+  
+  <div id="success-event" class="hidden alert success-alert">
+    <h3>Berhasil menambahkan event baru</h3>
+    <a class="close">&times;</a>
+  </div>
+  
+  <div id="danger-food" class="hidden alert danger-alert">
+    <h3>Berhasil menghapus makanan</h3>
+    <a class="close">&times;</a>
+  </div>
+  
+  <div id="danger-event" class="hidden alert danger-alert">
+    <h3>Berhasil menghapus event</h3>
+    <a class="close">&times;</a>
+  </div>
+</div> -->
+
+<div class="px-4">
+  <div class="
+  justify-center
+  items-center
+  mx-auto
+  max-w
+  rounded-lg
+  mt-16
+  px-20
+  text-center
+  ">
+    <div>
+      <h1 class="text-4xl font-medium grand-title">FOODS</h1>
+      {% if user.is_superuser %}
+          <button class="mt-10 w-fit space-x-3 py-3 px-6 m-auto bg-indigo-600 text-white rounded-lg  transition-all duration-400 transform hover:scale-105 cursor-pointer hover:shadow-lg" id="modalfood-open" type="button" data-modal-toggle="modalfood">
+            Add Food
+          </button>
+      {% endif %}
+
+      <!-- <div id="food-card" class="bg-white flex w-fit py-3 px-6 -mx-3 lg:-mx-4"></div> -->
+    </div>
+  </div>
+  
+  <!-- Add food modal -->
+  <div id="modalfood" tabindex="-1" aria-hidden="true" class="modal hidden fixed bg-gray-600 bg-opacity-50 overflow-y-auto overflow-x-hidden top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
+      <div class="modal-dialog relative p-4 w-full max-w-md h-full md:h-auto">
+          <!-- Modal content -->
+          <div class="relative bg-white rounded-lg shadow">
+              <button id="modalfood-close" type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-toggle="modalfood">
+                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                  <span class="sr-only">Close modal</span>
+              </button>
+              <div class="py-6 px-6 lg:px-8">
+                  <h3 class="mb-4 text-xl font-medium text-gray-900">Add {{ province }}'s Food</h3>
+                  <form class="space-y-6" id="add-food" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <!-- <input type="hidden" name="prov_id" id="prov_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ prov_id }}" required> -->
+                      {{ food_form.prov_id }}
+                      <div>
+                          <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
+                          <!-- <input type="text" name="name" id="fname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Name" required> -->
+                          {{ food_form.name }}
+                      </div>
+                      <div>
+                          <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Image URL</label>
+                          <!-- <input type="text" name="image" id="fimage" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Image URL" required> -->
+                          {{ food_form.image }}
+                      </div>
+                      <div>
+                          <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
+                          <!-- <textarea name="description" id="fdescription" cols="30" rows="5" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Description" required></textarea> -->
+                          {{ food_form.description }}
+                      </div>
+                      <button type="button" onclick="addFood()" class="bg-indigo-600 w-full text-white hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add Food</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div> 
+</div>
+<div id="food-card" class="flex flex-wrap rounded-lg justify-center w-full py-3 px-6 -mx-3 lg:-mx-4"></div>
+
+
+
+<div class="px-4">
+  <div class="
+  justify-center
+  items-center
+  text-center
+  mx-auto
+  max-w
+  rounded-lg
+  m-16
+  px-16
+  ">
+    <div style="margin-bottom:30px;">
+      <h1 class="text-4xl font-medium grand-title">ANNUAL EVENTS</h1>
+      {% if user.is_superuser %}
+        <button class="mt-10 w-fit space-x-3 py-3 px-6 m-auto bg-indigo-600 text-white rounded-lg  transition-all duration-400 transform hover:scale-105 cursor-pointer hover:shadow-lg" id="modalevent-open" type="button" data-modal-toggle="modalevent">
+          Add Event
+        </button>
+      {% endif %}
+      <!-- <div id="event-card" class="flex flex-wrap w-full py-6 m-auto -mx-4 lg:-mx-4"></div> -->
+        
+    </div>
+
+    <!-- Main modal -->
+    <div id="modalevent" tabindex="-1" aria-hidden="true" class="modal hidden fixed bg-gray-600 bg-opacity-50 overflow-y-auto overflow-x-hidden top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
+      <div class="modal-dialog relative p-4 w-full max-w-md h-full md:h-auto">
+          <!-- Modal content -->
+          <div class="relative bg-white rounded-lg shadow">
+              <button id="modalevent-close" type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-toggle="modalevent">
+                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                  <span class="sr-only">Close modal</span>
+              </button>
+              <div class="py-6 px-6 lg:px-8">
+                  <h3 class="mb-4 text-xl font-medium text-gray-900">Add {{ province }}'s Event</h3>
+                  <form class="space-y-6" id="add-event" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <!-- <input type="hidden" name="prov_id" id="prov_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ prov_id }}" required> -->
+                      {{ event_form.prov_id }}
+                      <div>
+                          <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
+                          <!-- <input type="text" name="name" id="ename" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Name" required> -->
+                          {{ event_form.name }}
+                        </div>
+                      <div>
+                        <label for="date" class="block mb-2 text-sm font-medium text-gray-900">Date</label>
+                        <!-- <input type="date" name="date" id="edate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Date" required> -->
+                        {{ event_form.date }}
+                      </div>
+                      <div>
+                          <label for="image" class="block mb-2 text-sm font-medium text-gray-900">Image URL</label>
+                          <!-- <input type="text" name="image" id="eimage" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Image URL" required> -->
+                          {{ event_form.image }}
+                      </div>
+                      <div>
+                          <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
+                          <!-- <textarea name="description" id="edescription" cols="30" rows="5" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Description" required></textarea> -->
+                          <!-- <input type="text" name="description" id="description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Description" required> -->
+                          {{ event_form.description }}
+                        </div>
+                      <button type="button" onclick="addEvent()" class="bg-indigo-600 w-full text-white hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add Event</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+    </div> 
+  </div>
+</div>
+<!-- <div class="flex flex-wrap rounded-lg justify-center w-full py-3 px-6 -mx-3 lg:-mx-4"></div> -->
+<div class="max-w-screen-xl p-5 mx-auto bg-white-800 dark:text-gray-100">
+	<div id="event-card" style="margin-bottom: 100px;" class="flex flex-wrap mx-10 justify-center grid grid-cols-1 gap-5 lg:grid-cols-4 sm:grid-cols-2">
+	</div>
+</div>
+
+
+<script type="text/javascript" src="{% static 'js/things.js' %}"></script>
+<script>
+  var prov_id = "{{ prov_id }}";
+  var role = "{{ role }}";
+  // get json event data
+  $.getJSON( `/things-to-do/json/food/${prov_id}/`, function( data ) {
+      data.forEach(food => {
+          addFoodCard(food);
+      });
+  });
+  // get json event data
+  $.getJSON( `/things-to-do/json/event/${prov_id}/`, function( data ) {
+      data.forEach(event => {
+          addEventCard(event);
+      });
+  });
+
+  let foodModal;
+  let openFoodModalBtn;
+  let closeFoodModalBtn;
+
+  let eventModal;
+  let openEventModalBtn;
+  let closeEventModalBtn;
+
+  if (role == "admin") {
+      // Grabs all the Elements by their IDs which we had given them
+      foodModal = document.getElementById("modalfood");
+      openFoodModalBtn = document.getElementById("modalfood-open");
+      closeFoodModalBtn = document.getElementById("modalfood-close");
+
+      eventModal = document.getElementById("modalevent");
+      openEventModalBtn = document.getElementById("modalevent-open");
+      closeEventModalBtn = document.getElementById("modalevent-close");
+
+      // We want the modal to open when the Open button is clicked
+      openFoodModalBtn.onclick = function() {
+          $("#modalfood").fadeIn();
+      }
+      // We want the modal to close when the Close button is clicked
+      closeFoodModalBtn.onclick = function() {
+          $("#modalfood").fadeOut();
+      }
+
+      // The modal will close when the user clicks anywhere outside the modal
+      window.onclick = function(event) {
+          if (event.target == eventModal) {
+          closeEventModalBtn.click();
+          }
+          else if (event.target == foodModal) {
+          closeFoodModalBtn.click();
+          }
+      }
+
+      // We want the modal to open when the Open button is clicked
+      openEventModalBtn.onclick = function() {
+          $("#modalevent").fadeIn();
+      }
+      // We want the modal to close when the Close button is clicked
+      closeEventModalBtn.onclick = function() {
+          $("#modalevent").fadeOut();
+      }
+  }
+
+  $("#fprov_id").val(prov_id);
+  $("#eprov_id").val(prov_id);
+
+</script>
+
+{% endblock content %}

@@ -50,7 +50,7 @@ def register(request):
 
 def logout_user(request):
     logout(request)
-    response = HttpResponseRedirect(reverse('main:login'))
+    response = HttpResponseRedirect(reverse('main:index'))
     response.delete_cookie('last_login')
     return response
 
@@ -63,27 +63,27 @@ def profile(request):
         profile.city = ""
     if profile.occupation == None:
         profile.occupation = ""
-    if not profile.image:
-        profile.image = "pictures/image_profile/blank.webp"
+    if profile.name == None:
+        profile.name = ""
 
     context = {'username':user,
+                'name': profile.name,
                 'city': profile.city,
                 'occupation': profile.occupation,
-                'image':profile.image}
+                }
     return render(request, 'profile.html', context)
 
 @login_required(login_url='main:login')
 def update_profile(request):
     if request.method == "POST":
         profile = Profile.objects.get(user=request.user.id)
+        name = request.POST.get("name")
         occupation = request.POST.get("occupation")
         city = request.POST.get("city")
-        image = request.FILES.get("image")
 
-        if image:
-            if profile.image:
-                profile.image.delete()
-            profile.image = image
+        # update profile information
+        if name:
+            profile.name = name
         if occupation:
             profile.occupation = occupation
         if city:

@@ -6,9 +6,10 @@ from django.db.models.signals import post_save # Produce a signal if there is an
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete= models.CASCADE )
+    name = models.CharField(max_length=150, null=True, blank=True)
     occupation = models.CharField(max_length=150, null=True, blank=True)
     city = models.CharField(max_length=150, null=True, blank=True)
-    image = models.ImageField(upload_to='pictures/image_profile/' , max_length=255, null=True, blank=True)
+    # image = models.ImageField(upload_to='pictures/image_profile/' , max_length=255, null=True, blank=True)
     def __str__(self):
         return "{0}".format(self.user.email)
         
