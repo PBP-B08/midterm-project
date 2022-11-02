@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 # Create your views here.
 # request handler
 def say_helo(request):
-    return render(request, 'helo.html', {'name': 'Tarreq'})
+    return render(request, 'welcome.html', {'nama': User.get_username})
 
 def say_plan(request):
     data_destinasi = PlanProperties.objects.all()
@@ -32,11 +32,20 @@ def say_form(request):
             content = form.save(commit=False)
             content.user = request.user
             content.save()
-            return JsonResponse({'judul': content.judul, 'destinasi':content.destinasi, 'aktivitas': content.aktivitas})
+            return JsonResponse({'judul': content.judul, 'destinasi':content.destinasi, 'aktivitas': content.aktivitas, 'hari': content.hari, 'orang':content.orang, 'deskripsi':content.deskripsi})
 
 
     return render(request, 'helo.html', context)
 
+
+def delete_form(request, id):
+    user = request.user
+    temp = PlanProperties.objects.get(pk=id)
+    if user.id == temp.user_id and request.method == 'DELETE':
+        temp.delete()
+    
+
+    return HttpResponse('')
 
     # if request.method == 'POST':
     #     form = InputForm(request.POST)

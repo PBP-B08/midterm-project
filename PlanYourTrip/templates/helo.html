@@ -12,8 +12,8 @@
 <body>
       <div class="wel">
         
-        <h1 class="text-center">Greetings {{name}}! Hope you have a wonderful day.</h1>
-        <h2 class="text-center">Ready to start Your Journey?</h2>
+        <!-- <h1 class="text-center">Greetings {{name}}! Hope you have a wonderful day.</h1> -->
+        <h1 class="text-center">Ready to start Your Journey?</h1>
         <!-- <a class="btn btn-primary" href="#" role="button">Your Adventure Starts Here</a> -->
 
     </div>
@@ -49,14 +49,17 @@
 <div id="kartu" class="row row cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-3 g-5">
 {% for item in items %}
 
-<div class="card row-cols-lg-3" style="width: 18rem;">
+<div class="card row-cols-lg-3" id="isikartu" style="width: 18rem;">
     {% comment %} <img src="https://theworldtravelguy.com/wp-content/uploads/2021/05/DSCF1664_1200.jpg" class="card-img-top" alt="..."> {% endcomment %}
     <div class="card-body">
-      <h5 class="card-title">{{item.judul}}</h5>
-      <p class="card-text">{{item.destinasi}}</p>
-      <p class="card-text">{{item.aktivitas}}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <h5 class="card-title">{{item.judul}} berhasil direncanakan!</h5>
+      <p class="card-text">Destinasi kamu kali ini adalah {{item.destinasi}} . Perjalanan {{item.hari}} hari dengan {{item.orang}} teman atau keluargamu akan menjadi perjalanan penuh aktivitas {{item.aktivitas}} yang menyenangkan!</p>
+      <p class="card-text">Berikut adalah deskripsi dari rencanamu: {{item.deskripsi}}</p>
+      <a href="#" class="btn btn-primary" onclick="">I've done the trip!</a>
     </div>
+    <!-- <button class="btn btn-danger m-auto mx-2" onclick=deleteTask(${isikartu.pk})>DELETE</button> -->
+
+    <!-- <button onclick="deleteTask(${data[i].pk})" class="delete-task">Delete Task</button> -->
   </div>
 
 {% endfor %}
@@ -74,6 +77,26 @@
 </style>
 
 <script>
+  // function addPlan(data){
+  //   $(".kartu").append(
+  //     `{% comment %} <img src="https://theworldtravelguy.com/wp-content/uploads/2021/05/DSCF1664_1200.jpg" class="card-img-top" alt="..."> {% endcomment %}
+  //   <div class="card-body">
+  //     <h5 class="card-title">{{item.judul}} berhasil direncanakan!</h5>
+  //     <p class="card-text">Destinasi kamu kali ini adalah {{item.destinasi}} . Perjalanan {{item.hari}} hari dengan {{item.orang}} teman atau keluargamu akan menjadi perjalanan penuh aktivitas {{item.aktivitas}} yang menyenangkan!</p>
+  //     <p class="card-text">Berikut adalah deskripsi dari rencanamu: {{item.deskripsi}}</p>
+  //     <a href="#" class="btn btn-primary" onclick="">I've done the trip!</a>
+  //   </div>`
+  //   )
+  // }
+  //    // get data json
+  //    $.getJSON( 'json/', function( data ) {
+  //         data.forEach(element => {
+  //           addPlan(element);
+  //         });
+  //     });
+
+
+      
     $("#formterisi").click(function(e){
         e.preventDefault()
         console.log("masuk")
@@ -89,7 +112,7 @@
             success: function(data){
                 $("#kartu").append(
                     `
-                    <div class="card row-cols-lg-3" style="width: 18rem;">
+                    <div class="card row-cols-lg-3" id= style="width: 18rem;">
                         {% comment %} <img src="https://theworldtravelguy.com/wp-content/uploads/2021/05/DSCF1664_1200.jpg" class="card-img-top" alt="..."> {% endcomment %}
                         <div class="card-body">
                           <h5 class="card-title">${data.judul}</h5>
@@ -105,6 +128,19 @@
             }
         })
     })
+
+    // function deleteTask(id){
+    //   $.ajax({
+    //     type: 'DELETE',
+    //     url: window.location.href,
+    //     headers: {
+    //             'X-CSRFToken': '{{ csrf_token }}',
+    //         },
+    //     success: function(data){
+    //       $.get("/helo", )
+    //     }
+    //   })
+    // }
     
 </script>
 {% endblock content %}
