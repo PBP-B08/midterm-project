@@ -3,8 +3,8 @@
         "model": "faq_review.FrequentlyAskedQuestion",
         "pk": 1,
         "fields": {
-            "question": "Tempat manakah yang paling favorit di daerah ini?",
-            "answer": "Monas merupakan tempat paling populer di Jakarta karena icon kota Jakarta."
+            "question": "Tempat manakah yang paling favorit di daerah Bali?",
+            "answer": "Pantai Kuta merupakan tempat paling populer di Bali karena pemandangannya sangat indah."
         }
     },
 
@@ -12,8 +12,8 @@
         "model": "faq_review.FrequentlyAskedQuestion",
         "pk": 2,
         "fields": {
-            "question": "Pertanyaan 2",
-            "answer": "Jawaban pertanyaan 2"
+            "question": "Apakah makanan khas di daerah Jawa?",
+            "answer": "Jika dilihat dari daerahnya sudah pasti sangat banyak, seperti Jawa Barat, nasi Jamblang. Jika ingin mengetahui makanan khas bisa dicari lebih spesifik lagi pada internet."
         }
     },
 
@@ -21,24 +21,24 @@
         "model": "faq_review.FrequentlyAskedQuestion",
         "pk": 3,
         "fields": {
-            "question": "Pertanyaan 3",
-            "answer": "Jawaban pertanyaan 3"
+            "question": "Bagaimana saya bisa mencapai tujuan wisata?",
+            "answer": "Anda bisa naik pesawat atau naik transportasi darat jika memungkinkan dengan mengambil rute daerah tersebut."
         }
     },
     {
         "model": "faq_review.FrequentlyAskedQuestion",
         "pk": 4,
         "fields": {
-            "question": "Pertanyaan 4",
-            "answer": "Jawaban pertanyaan 4"
+            "question": "Berapa biaya yang harus saya keluarkan untuk pergi ke daerah tertentu?",
+            "answer": "Biaya yang dibutuhkan bervariasi tergantung bagaimana kalian mengelolanya."
         }
     },
     {
         "model": "faq_review.FrequentlyAskedQuestion",
         "pk": 5,
         "fields": {
-            "question": "Pertanyaan 5",
-            "answer": "Jawaban pertanyaan 5"
+            "question": "Bagaimana saya bisa tahu kegiatan yang ada selama saya berada di tempat wisata?",
+            "answer": "Pada website kami telah disediakan fitur yang bernama event calendar yang menampilkan event apa saja yang ada di daerah tersebut."
         }
     }
 ]
