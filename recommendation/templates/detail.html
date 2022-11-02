@@ -58,7 +58,7 @@
   // function handler for add area asynchronously
   var addArea = function() {
     var formData = $("#add-area").serialize();
-    if ($("#title").val() && $("#summary").val() && $('#description')) {
+    if ($("#areaTitle").val() && $("areaImage") && $("#areaSummary").val() && $('#areaDescription')) {
       $.ajax({
         type: "POST",
         url: "addArea/",
@@ -155,25 +155,29 @@
             <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
               Title
             </label>
-            <input type="text" id="title" name="title" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            <!-- <input type="text" id="title" name="title" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"> -->
+            {{ areaForm.title }}
           </div>
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="summary">
               Summary
             </label>
-            <textarea type="text" id="summary" name="summary" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+            <!-- <textarea type="text" id="summary" name="summary" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea> -->
+            {{ areaForm.summary }}
           </div>
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
               Description
             </label>
-            <textarea type="text" id="description" name="description" cols="60" rows="5" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+            <!-- <textarea type="text" id="description" name="description" cols="60" rows="5" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea> -->
+            {{ areaForm.description }}
           </div>
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="image">
               Image
             </label>
-            <input type="text" id="image" name="image" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="enter url image"></textarea>
+            <!-- <input type="text" id="image" name="image" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="enter url image"></textarea> -->
+            {{ areaForm.image }}
           </div>
           
         </form>

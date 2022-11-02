@@ -10,7 +10,13 @@ from django.core import serializers
 
 
 def index(request):
-    return render(request, 'recommendation.html')
+    areaForm = AreaForm()
+    provinceForm = ProvinceForm()
+    context = {
+        'areaForm': areaForm,
+        'provinceForm': provinceForm,
+    }
+    return render(request, 'recommendation.html', context)
 
 
 def addProvince(request):
@@ -101,7 +107,10 @@ def delete_area(request, pk, area_pk):
 
 def detail(request, pk):
     province = Province.objects.get(id=pk)
-    context = {'province': province}
+    areaForm = AreaForm
+    context = {'province': province,
+               'areaForm': areaForm
+               }
     return render(request, 'detail.html', context)
 
 

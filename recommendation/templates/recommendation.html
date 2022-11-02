@@ -76,7 +76,7 @@
   // function handler for add province asynchronously
   var addProvince = function() {
     var formData = $("#add-province").serialize();
-    if ($("#title").val() && $("#image") && $("#header").val() && $('#summary')) {
+    if ($("#provinceTitle").val() && $("#provinceImage") && $("#provinceHeader").val() && $('#provinceSummary')) {
       $.ajax({
         type: "POST",
         url: "addProvince/",
@@ -164,25 +164,29 @@
             <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
               Title
             </label>
-            <input type="text" id="title" name="title" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            <!-- <input type="text" id="title" name="title" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"> -->
+            {{ provinceForm.title }}
           </div>
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="header">
               Header
             </label>
-            <textarea type="text" id="header" name="header" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+            <!-- <textarea type="text" id="header" name="header" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea> -->
+            {{ provinceForm.header }}
           </div>
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="summary">
               Summary
             </label>
-            <textarea type="text" id="summary" name="summary" cols="60" rows="5" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+            <!-- <textarea type="text" id="summary" name="summary" cols="60" rows="5" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea> -->
+            {{ provinceForm.summary }}
           </div>
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="image">
               Image
             </label>
-            <input type="text" id="image" name="image" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="enter image url"></textarea>
+            <!-- <input type="text" id="image" name="image" class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="enter image url"></textarea> -->
+            {{ provinceForm.image }}
           </div>
           
           <!-- <input type="text" id="title" name="title" placeholder="Title" class="form-control" maxlength="255" required>
