@@ -2,23 +2,32 @@
 {% load static %}
 
 {% block meta %}
-<title>Hello, world!</title>
+<title>Cultural Center</title>
 {% endblock meta %}
 
 {% block content %}
-<div class="px-4">
+<div class="px-4 my-10 flex justify-center text-center items-center">
   <div class="
-        flex
+        auto-cols-max
+        md:flex
+        md:columns-2
         justify-center
         items-center
-        bg-white
-        mx-auto
-        max-w-2xl
-        rounded-lg
-        my-16
-        p-16
+        max-w-3xl
+        mx-16
+        space-x-6
+        place-content-between
       ">
-    <h1 class="text-2xl font-medium">Homepage</h1>
+      <div class="h-full w-full">
+        <h1 class="text-indigo-800 text-2xl lg:text-5xl font-bold text-center">Cultural Center</h1>
+      </div>
+      <div class="items-right">
+        <img src="{% static 'assets/main-img.png' %}" alt="">
+      </div>
   </div>
+</div>
+<div class="content-center text-center mb-10">
+  <h3 class="text-xl text-center">See Upcoming Events in Indonesia</h3>
+  <a href="/eventcalendar/" type="button" class="mt-5 w-fit space-x-3 py-3 px-6 m-auto bg-indigo-600 text-white rounded-lg  transition-all duration-400 transform hover:scale-105 cursor-pointer hover:shadow-lg">Here</a>
 </div>
 {% endblock content %}
