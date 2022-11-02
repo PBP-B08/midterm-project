@@ -41,12 +41,10 @@ Cultural Center merupakan aplikasi yang menjadi sarana mempromosikan kebudayaan 
       - Profile page
       - Edit profile
 3. Homepage
-   - Developer: [Achmad Noval Fahrezi](https://github.com/novalzfahr)
+   - Developer: [Naila Shafirni Hidayat](https://github.com/nailashfrni)
    - Deskripsi: Halaman utama yang berisi menu fitur-fitur aplikasi
    - Detail fitur:
       - Landing Page
-      - Search box daerah
-      - Form feedback
 4. Event calendar
    - Developer: [Gabriel Edgar Firdausyah N](https://github.com/nois44)
    - Deskripsi: Halaman yang menampilkan event terdekat kebudayaan di Indonesia yang dikategorikan berdasarkan bulan.
@@ -93,4 +91,9 @@ Cultural Center merupakan aplikasi yang menjadi sarana mempromosikan kebudayaan 
 - Mengakses semua modul dari user yang tidak login
 - Mengunjungi halaman dashboard profil dan memodifikasi profil
 - Mengakses halaman Plan Your Trip
-- Mengisi form feedback pada homepage
+
+### Admin (Super user)
+
+- Mengakses semua modul
+- Menambahkan provinsi dan area baru pada halaman Recommendation
+- Menambahkan food dan event baru pada halaman Things to Do
