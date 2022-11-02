@@ -6,9 +6,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
   <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
+  
   {% block meta %}
   {% endblock meta %}
 </head>
@@ -60,7 +62,7 @@
             <a class="md:p-4 py-2 block hover:text-purple-400" href="/things-to-do/">Things To Do</a>
           </li>
           <li>
-            <a class="md:p-4 py-2 block hover:text-purple-400" href="#">FAQ</a>
+            <a class="md:p-4 py-2 block hover:text-purple-400" href="/faq-review/">FAQ</a>
           </li>
           {% if user.is_authenticated %}
             <li>
@@ -92,9 +94,10 @@
     </nav>
   </header>
 
+ 
+
   {% block content %}
   {% endblock content %}
-
   <footer class="py-6 dark:bg-gray-800 dark:text-gray-50 mt-8">
     <div class="container px-6 mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50">
       <div class="grid grid-cols-12">

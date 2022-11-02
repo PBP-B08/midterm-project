@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+  /* Optional Javascript to close the radio button version by clicking it again */
+  var myRadios = document.getElementsByName('tabs2');
+  var setCheck;
+  var x = 0;
+  for(x = 0; x < myRadios.length; x++){
+      myRadios[x].onclick = function(){
+          if(setCheck != this){
+                setCheck = this;
+          }else{
+              this.checked = false;
+              setCheck = null;
+      }
+      };
+  }
+
+  $(document).ready(function(){
+      $.getJSON("/faq-review/show_json_faq/", function(data){
+        var count = 0;
+          $.each(data, function(index, value){
+              console.log(value)
+              console.log(count)
+              $("#faq-element").append(
+                `<div class="tab w-full overflow-hidden border-t">
+                  <input class="absolute opacity-0" id="tab-single-${count}" type="radio" name="tabs2">
+                    <label class="block p-5 leading-normal cursor-pointer" for="tab-single-${count}">${value.fields.question}</label>
+                    <div class="tab-content overflow-hidden border-l-2 bg-gray-100 border-indigo-500 leading-normal">
+                      <p class="p-5">${value.fields.answer}</p>
+                    </div>
+                </div>`
+              )
+              count++;
+          })
+      })
+  })
+</script>
+
+<link rel="stylesheet" href="{% static 'css/faq.css' %}">
+
+<div class="font-sans container">
+  <div class="w-full md:w-3/5 mx-auto p-8">
+    <div class="flex  my-4 font-bold text-xl" >
+      <h3>FAQ</h3>
+    </div>
+
+    <div class="shadow-md" id="faq-element">
+    </div>
+    <div class="row text-center d-flex align-items-stretch" id="review-card">
+      </div>
+      <div class="support-button text-center d-flex align-items-center justify-content-center mt-4 mb-4">
+        <p class="mb-0 px-2">Wanna share your experience to other? please share with us!</p>
+        <button class="text-center bg-blue-500 hover:bg-blue-700 text-white font-bold mt-5 py-2 px-4 rounded">
+          <a href="/faq-review/review/" type="button">
+            Add Review
+          </a>
+        </button>
+      </div>
+    </div>
+</div>
+{% endblock content %}
