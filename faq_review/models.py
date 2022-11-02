@@ -5,6 +5,7 @@ from django.utils import timezone
 # Create your models here.
 class reviewUser(models.Model):
     user = models.ForeignKey(User ,on_delete = models.CASCADE)
+    username = models.TextField(null=True)
     date_add = models.DateField(default = timezone.now)
     title = models.TextField()
     review = models.TextField()
