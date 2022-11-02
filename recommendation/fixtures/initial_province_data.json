@@ -1,0 +1,42 @@
+[
+    {
+        "model": "recommendation.province",
+        "pk": 1,
+        "fields": {
+            "title": "Java",
+            "header": "The Land of a Thousand Histories",
+            "summary": "Java has many exhilarating natural and cultural attractions that are yet to be discovered. Explore many exciting destinations from Ujung Kulon to Baluran National Park, from Jakarta to Surabaya.",
+            "image": "https://cdn.thecrazytourist.com/wp-content/uploads/2017/07/Borobudur-Temple.jpg"
+        }
+    },
+    {
+        "model": "recommendation.province",
+        "pk": 2,
+        "fields": {
+            "title": "Bali & Nusa Tenggara",
+            "header": "Bali & Nusa Tenggara: The Charm of Indonesia's Southeastern Archipelago",
+            "summary": "Bali & Nusa Tenggara are unmatched beauties, a must to experience at least once in a lifetime. Marvel at the myriad charms of the islands, from the luxury of Nusa Dua to the exciting culture of Wae Rebo Village.",
+            "image": "https://media.timeout.com/images/105240189/image.jpg"
+        }
+    },
+    {
+        "model": "recommendation.province",
+        "pk": 3,
+        "fields": {
+            "title": "Maluku & Papua",
+            "header": "Maluku & Papua: Paradise of the East",
+            "summary": "Maluku & Papua host extraordinary wonders that will last forever in your memory. Explore the beauty, from Kei Island to Raja Ampat.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/8/88/Raja_Ampat%2C_Mutiara_Indah_di_Timur_Indonesia.jpg"
+        }
+    },
+    {
+        "model": "recommendation.province",
+        "pk": 4,
+        "fields": {
+            "title": "Kalimantan",
+            "header": "Kalimantan: Natural Haven of Indonesia",
+            "summary": "Kalimantan offers a complete adventure with awesome excitement from Tanjung Puting National Park to the small islands of Derawan.",
+            "image": "https://mediaim.expedia.com/destination/1/8b6b323ffa283797038761a85f9b3aa3.jpg"
+        }
+    }
+]
