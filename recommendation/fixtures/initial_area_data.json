@@ -1,0 +1,46 @@
+[
+    {
+        "model": "recommendation.area",
+        "pk": 1,
+        "fields": {
+            "title": "Dieng Plateau",
+            "province": 1,
+            "summary": "Among the Gods at Dieng Plateau",
+            "description": "The name ‘dieng which literally translates as ‘abode of the Gods’ says all you need to know about this collection small ancient temples set in the  remarkable volcanic landscape of the Dieng Plateau. The misty location, sulphurous springs and colored lakes truly make this a place of natural wonder and cultural significance.  Come here and you will be transported back to ancient times. The temples are remnants from the glorious period of the Hindu empire in Java dating back to the 7th and 8th centuries. Standing on a plateau 2,000 meters (6,500 ft) above sea level, it is the extraordinary setting of these temples which make them most remarkable. It is believed that this place was chosen as the sacred location because of the spectacular landscape. From the bubbling mudholes, brightly colored sulphur lakes and thick mist surrounding the plateau, visitors will easily understand why the ancient Javanese considered this place to be the seat of supernatural powers. Modern visitors to the plateau are enthralled by the unearthly beauty of this spot, with many finding it quite eerie. Each of the small temples is named after figures in the epic tale of the Mahabharata such as Bima, Gatotkaca, Arjuna and Srikandi. It is believed that these temples used to serve as residences of Hindu priests who would spread Hindu teachings.",
+            "image": "https://www.indonesia.travel/content/dam/indtravelrevamp/en/destinations/java/central-java/dieng-plateau/temple.jpg"
+        }
+    },
+    {
+        "model": "recommendation.area",
+        "pk": 2,
+        "fields": {
+            "title": "Ijen Crater",
+            "province": 1,
+            "summary": "The Active Volcano for Adventurer Hikers",
+            "description": "Ijen plateau, also known as 'Kawah Ijen' is highly recommended for nature enthusiasts and hikers. The Plateau was at one time a huge active crater, 134 sq km in area. Ijen is a quiet but active volcano, and the landscape is dominated by the volcanic cones of Ijen (2,368 asl) and Merapi (2,800 asl) on the northeastern edge of the Plateau, and Raung (3,332 asl) on the southwestern corner. The beauty of Ijen Crater has been recognized across the world. In March 2016, this magical lake has been included in UNESCO’s World Biosphere Reserves. When you arrived here after walking through a road surrounded by lush greeneries, a refreshing chill breeze will greet you right away. The air around Ijen Crater normally will reach about 10 degrees celsius daily. Sometimes, it might even hit 2 degrees celsius. In the day, the mesmerizing sight of sunlight radiating a turquoise lake enveloped with smokes will give you an everlasting impression. Several small vents can be found surrounding the crater. They are a source of work for sulfur miners, making their way up and down from the crater and down to the lake each and every day. At dawn, you can have a chance to witness an incredible natural phenomenon where blue-tinted flames will appear around the crater. Known by many as the Blue Fire, this phenomenon usually occurs around 05:00 AM.",
+            "image": "https://www.indonesia.travel/content/dam/indtravelrevamp/en/destinations/java/east-java/ijen-crater/another-view.jpg"
+        }
+    },
+    {
+        "model": "recommendation.area",
+        "pk": 3,
+        "fields": {
+            "title": "Karimun Jawa",
+            "province": 1,
+            "summary": "Marine Paradise of Java Sea",
+            "description": "The Karimun Jawa archipelago, located in the Java Sea, across the capital city of Semarang, has everything to offer for divers and backpackers who enjoy trekking and snorkeling along a gorgeous beach. The Karimunjawa National Park (not to be confused with the Karimun Islands in Bintan, Riau) is one of seven marine national parks in Indonesia. Taking only a four to five-hour trip from Semarang, you will be surrounded by a natural beauty so stunning, you wish you could stay here forever. The sparkling beaches and pristine seas are home to healthy coral reefs that scatter around an 80 km wide area all the way to the coast of Jepara. Here, you can find two protected marine biota species. Namely, the black coral (Antiphates sp )and organ pipe coral (Tubipora musica). Others include the triton trumpet, the horned helmet, and the pearly-chambered nautilus. There are hawksbill turtles as well as common green turtles too. Above the surface, you can also witness the red-breasted parakeet and other tropical bird species.",
+            "image": "https://www.indonesia.travel/content/dam/indtravelrevamp/en/destinations/revisi-2020/karimunimage2.jpg"
+        }
+    },
+    {
+        "model": "recommendation.area",
+        "pk": 4,
+        "fields": {
+            "title": "Semarang: The Venice of Java",
+            "province": 1,
+            "summary": "Semarang: The Venice of Java",
+            "description": "The heart of Central Java, Semarang, with its multicultural history would be the best city for those who love exploring cities with diverse cultural heritage. It’s also one of the largest metropolitan cities in Indonesia, and provides so many compelling itineraries for you to visit. Semarang is traversed by many rivers in the middle of the city just like Venice in Italy, thus Netherland ever called this city as Venetië van Java or The Venice of Java. This city is also known as Kota Lumpia or Lumpia City. Lumpia is one of the most delicious snacks you could ever find in Indonesia. It’s a snack born by acculturation of two cultures, Javanese and Chinese, and a typical food from Semarang.As one of the huge cities in Indonesia, Semarang is never deserted by tourists all over the world. Let’s learn more about the reasons why.",
+            "image": "https://www.indonesia.travel/content/dam/indtravelrevamp/en/destinations/revisi-2020/kotalamarevamp.jpg"
+        }
+    }
+]
