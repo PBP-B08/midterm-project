@@ -2,7 +2,10 @@
 {% load static %}
 
 {% block meta %}
-<title>Cultural Center</title>
+  <title>Cultural Center</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
+  <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
 {% endblock meta %}
 
 {% block content %}
@@ -27,7 +30,8 @@
   </div>
 </div>
 <div class="content-center text-center mb-10">
-  <h3 class="text-xl text-center">See Upcoming Events in Indonesia</h3>
-  <a href="/eventcalendar/" type="button" class="mt-5 w-fit space-x-3 py-3 px-6 m-auto bg-indigo-600 text-white rounded-lg  transition-all duration-400 transform hover:scale-105 cursor-pointer hover:shadow-lg">Here</a>
+  <h3 class="text-xl text-center">Begin Your Journey in Indonesia</h3>
+  <a href="/recommendation/" type="button" class="mt-5 w-fit space-x-3 py-3 px-6 m-auto bg-indigo-600 text-white rounded-lg  transition-all duration-400 transform hover:scale-105 cursor-pointer hover:shadow-lg">Here</a>
 </div>
+
 {% endblock content %}

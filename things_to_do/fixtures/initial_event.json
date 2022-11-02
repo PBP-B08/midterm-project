@@ -1,0 +1,112 @@
+[
+    {
+        "model": "things_to_do.event",
+        "pk": 1,
+        "fields": {
+            "province": "1",
+            "name": "Solo Menari",
+            "date": "2022-04-29",
+            "description": "Acara pentas tari adat atau tradisi Jawa",
+            "image": "https://joss.co.id/data/uploads/2019/04/solo-menari.jpg"
+        }
+    },
+    {
+        "model": "things_to_do.event",
+        "pk": 2,
+        "fields": {
+            "province": "1",
+            "name":"Semarang Night Carnival",
+            "date": "2022-05-01",
+            "description": "Parade kostum dan seni budaya lokal dalam rangka HUT Semarang 475",
+            "image": "https://assets.promediateknologi.com/crop/0x197:707x946/x/photo/2021/11/13/1818729741.jpeg"
+        }
+    },
+    {
+        "model": "things_to_do.event",
+        "pk": 3,
+        "fields": {
+            "province": "1",
+            "name": "Moro Borobudur",
+            "date": "2022-07-15",
+            "description": "Festival Seni Musikal Kontemporer",
+            "image": "https://www.kompas86.com/wp-content/uploads/2021/11/IMG-20211104-WA0304.jpg"
+        }
+    },
+    {
+        "model": "things_to_do.event",
+        "pk": 4,
+        "fields": {
+            "province": "1",
+            "name": "Solo Keroncong Fest",
+            "date": "2022-07-16",
+            "description": "Festival pelestarian musik keroncong asli Indonesia",
+            "image": "https://cdn.antaranews.com/cache/800x533/2022/07/25/WhatsApp-Image-2022-07-25-at-7.32.59-AM.jpeg"
+        }
+    },
+    {
+        "model": "things_to_do.event",
+        "pk": 5,
+        "fields": {
+            "province": "2",
+            "name": "Bali Spirit Festival",
+            "date": "2022-05-19",
+            "description": "Acara tahunan dengan unsur musik dan tarian tradisional",
+            "image": "https://i.ytimg.com/vi/BElvr5Ta4Fc/maxresdefault.jpg"
+        }
+    },
+    {
+        "model": "things_to_do.event",
+        "pk": 6,
+        "fields": {
+            "province": "2",
+            "name": "Ubud Village Jazz Festival",
+            "date": "2022-08-12",
+            "description": "Menampilkan para musisi dan komposer di Bali dalam satu panggung dengan keberagaman genre musik yang dibawakan",
+            "image": "https://static.thehoneycombers.com/wp-content/uploads/sites/4/2016/06/ubud-village-jazz-768x454.jpg"
+        }
+    },
+    {
+        "model": "things_to_do.event",
+        "pk": 7,
+        "fields": {
+            "province": "2",
+            "name": "Sanur Village Festival",
+            "date": "2022-08-19",
+            "description": "Pameran ekonomi kreatif, kontes dan lomba, atraksi kesenian, hingga festival makanan",
+            "image": "https://www.pegipegi.com/travel/wp-content/uploads/2022/06/Event-Festival-Budaya-di-Bali-2-768x576.jpg"
+        }
+    },
+    {
+        "model": "things_to_do.event",
+        "pk": 8,
+        "fields": {
+            "province": "3",
+            "name": "Pattimura Day",
+            "date": "2022-05-14",
+            "description": "Acara peringatan HUT Maluku",
+            "image": "https://www.rmolpapua.id/uploads/images/2022/05/image_750x_627fe81cee8c9.jpg"
+        }
+    },
+    {
+        "model": "things_to_do.event",
+        "pk": 9,
+        "fields": {
+            "province": "2",
+            "name": "Pemuteran Bay Festival",
+            "date": "2022-11-11",
+            "description": "Event budaya pelestarian lingkungan dan seni budaya",
+            "image": "https://disparda.baliprov.go.id/wp-content/uploads/2022/04/WhatsApp-Image-2022-04-11-at-09.10.20.jpeg"
+        }
+    },
+    {
+        "model": "things_to_do.event",
+        "pk": 10,
+        "fields": {
+            "province": "3",
+            "name": "Festival Literasi Maluku Utara",
+            "date": "2022-10-03",
+            "description": "Festival yang bertujuan meningkatkan indeks pembangunan literasi",
+            "image": "https://infopublik.id/assets/upload/headline//IMG-20221003-WA0157.jpg"
+        }
+    }
+]
