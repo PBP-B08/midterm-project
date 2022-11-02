@@ -2,7 +2,6 @@ from recommendation.models import Province
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
-from django.db.models.functions import Extract
 from django.contrib.auth.decorators import login_required
 from .forms import EventForm, FoodForm
 
