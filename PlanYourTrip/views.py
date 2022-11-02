@@ -1,6 +1,8 @@
 from django.core import serializers
 from django.shortcuts import render
+from django.urls import reverse
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from PlanYourTrip.models import PlanProperties
@@ -44,22 +46,15 @@ def say_form(request):
 def delete_form(request, id):
     user = request.user
     temp = PlanProperties.objects.get(pk=id)
-    if user.id == temp.user_id and request.method == 'DELETE':
-        temp.delete()
+    temp.delete()
     
-
-    return HttpResponse('')
+    return HttpResponseRedirect('/plan/helo/')
 
 
 def show_json(request):
     data = PlanProperties.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("json", data), content_type="/application/json")
     
-
-
-
-
-
     # if request.method == 'POST':
     #     form = InputForm(request.POST)
     #     if form.is_valid():

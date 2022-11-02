@@ -16,7 +16,7 @@
 
 <body>
       <div class="wel">
-        <h1 class="text-center">Ready to start Your Journey?</h1>
+        <h1 class="text-center font-bold text-3xl">Ready to start Your Journey?</h1>
     </div>
 
     <!-- Button trigger modal -->
@@ -111,7 +111,7 @@
             <h5 class="card-title">${a.fields.judul} berhasil direncanakan!</h5>
             <p class="card-text">Destinasi kamu kali ini adalah ${a.fields.destinasi} . Perjalanan ${a.fields.hari} hari dengan ${a.fields.orang} teman atau keluargamu akan menjadi perjalanan penuh aktivitas ${a.fields.aktivitas} yang menyenangkan!</p>
             <p class="card-text">Berikut adalah deskripsi dari rencanamu: ${a.fields.deskripsi}</p>
-            <a href="#" class="btn btn-primary" onclick="">I've done the trip!</a>
+            <a href="/plan/delete/${a.pk}" class="btn btn-primary" onclick="">I've done the trip!</a>
           </div>
           </div>
           `)
