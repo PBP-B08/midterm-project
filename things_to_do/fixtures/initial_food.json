@@ -1,0 +1,102 @@
+[
+    {
+        "model": "things_to_do.food",
+        "pk": 1,
+        "fields": {
+            "province": "1",
+            "name": "Soto Kudus",
+            "description": "Soto khas Kudus yang disertai kuah kuning, dapat memanjakan lidah Anda",
+            "image": "https://rasabunda.com/wp-content/uploads/2022/06/Soto-Kudus.jpg"
+        }
+    },
+    {
+        "model": "things_to_do.food",
+        "pk": 2,
+        "fields": {
+            "province": "1",
+            "name":"Tahu Petis",
+            "description": "Tahu kuning goreng yang berisi bumbu rujak petis",
+            "image": "https://img.okezone.com/content/2015/06/03/298/1159632/tahu-goreng-petis-camilan-khas-surabaya-EgEyjIqNpo.jpg"
+        }
+    },
+    {
+        "model": "things_to_do.food",
+        "pk": 3,
+        "fields": {
+            "province": "1",
+            "name": "Garang Asem",
+            "description": "Berbahan dasar daging ayam yang dimasak bersama santan",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI417QHscL5q8rNaZOkY6CUxz7-kK3HrhWFg&usqp=CAU"
+        }
+    },
+    {
+        "model": "things_to_do.food",
+        "pk": 4,
+        "fields": {
+            "province": "1",
+            "name": "Mie Ongklok",
+            "description": "Mie kuning rebus dengan kuah kental",
+            "image": "https://caricagemilang.com/wp-content/uploads/2017/11/6-mie-ongklok-2-1.jpg"
+        }
+    },
+    {
+        "model": "things_to_do.food",
+        "pk": 5,
+        "fields": {
+            "province": "2",
+            "name": "Ayam Betutu",
+            "description": "Ayam khas pulau Dewata dengan cita rasa yang khas",
+            "image": "https://awsimages.detik.net.id/community/media/visual/2021/08/27/resep-ayam-betutu-gilimanuk_43.jpeg?w=1200"
+        }
+    },
+    {
+        "model": "things_to_do.food",
+        "pk": 6,
+        "fields": {
+            "province": "2",
+            "name": "Pie Susu",
+            "description": "Pie manis yang cocok untuk hidangan penutup",
+            "image": "https://harianresep.com/wp-content/uploads/2020/07/resep-pie-susu.jpg"
+        }
+    },
+    {
+        "model": "things_to_do.food",
+        "pk": 7,
+        "fields": {
+            "province": "2",
+            "name": "Sate Lilit",
+            "description": "Terbuat dari daging ayam atau ikan yang digiling",
+            "image": "https://akcdn.detik.net.id/community/media/visual/2022/06/18/10-resep-masakan-bali-populer-ayam-betutu-hingga-sate-lilit-5_169.jpeg?w=620"
+        }
+    },
+    {
+        "model": "things_to_do.food",
+        "pk": 8,
+        "fields": {
+            "province": "3",
+            "name": "Sagu Papeda",
+            "description": "berbahan dasar sagu dan mempunyai tekstur yang kenyal",
+            "image": "https://cdn.idntimes.com/content-images/community/2019/02/papeda-ikan-kuah-kuning-maksindo-895fcd52dc95b733ba2e75c894bdf441_600x400.jpg"
+        }
+    },
+    {
+        "model": "things_to_do.food",
+        "pk": 9,
+        "fields": {
+            "province": "3",
+            "name": "Ikan Kuah Kuning",
+            "description": "Olahan ikan yang biasanya disajikan bersama dengan papeda",
+            "image": "https://img.okezone.com/content/2015/10/12/298/1230547/resep-ikan-kuah-kuning-ambon-lezat-GEF2DxQNuQ.jpg"
+        }
+    },
+    {
+        "model": "things_to_do.food",
+        "pk": 10,
+        "fields": {
+            "province": "3",
+            "name": "Lalampa",
+            "description": "Mirip dengan lemper Jawa, tetapi dibakar",
+            "image": "https://www.reseppedia.com/storage/upload/Resep_Membuat_Lalampa_Lezat_Khas_Manado.jpg"
+        }
+    }
+]

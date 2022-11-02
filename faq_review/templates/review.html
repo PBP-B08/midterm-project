@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<script>
+
+  $(document).ready(function() {
+      $.getJSON("/faq-review/show_json_review/", function(data){
+          $.each(data, function(index,value){
+            console.log(value)
+              $("#review-card").append( 
+                  // `<div class="col-md-4 mb-5 mb-md-0 d-flex align-items-stretch">
+                  //   <div class="card testimonial-card">
+                  //     <div class="card-up" style="background-color: #9d789b;"></div>
+                  //       <div class="mx-auto bg-white">
+                  //       </div>
+                  //     <div class="card-body">
+                  //       <h4 class="mb-4">${value.fields.username}</h4>
+                  //       <hr />
+                  //       <p class="dark-grey-text mt-4 font-weight-bold">
+                  //         <i class="fas fa-quote-left pe-2"></i>${value.fields.title}
+                  //       </p>
+                  //       <p class="dark-grey-text mt-4">
+                  //         <i class="fas fa-quote-left pe-2"></i>${value.fields.review}
+                  //       </p>
+                  //       <a href="/faq-review/delete/${value.pk}/" class="btn btn-primary">Delete task</a>
+                  //     </div>
+                  //   </div>
+                  // </div>`
+                  
+                  `<div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                    <div class="mb-8">
+                      <p class="text-sm text-gray-600 flex items-center">
+                          <img class="w-10 h-10 rounded-full mr-4" src="/static/media/review.png">
+                        User Review
+                      </p>
+                      <div class="text-gray-900 font-bold text-xl mb-2">${value.fields.title}</div>
+                      <p class="text-gray-700 text-base">${value.fields.review}</p>
+                    </div>
+                    <div class="flex items-center">
+                      <img class="w-10 h-10 rounded-full mr-4" src="/static/media/profile.png">
+                      <div class="text-sm">
+                        <p class="text-gray-900 leading-none">${value.fields.username}</p>
+                        <p class="text-gray-600">${value.fields.date_add}</p>
+                        <a href="/faq-review/delete/${value.pk}/" class="btn btn-primary">Delete task</a>
+                      </div>
+                    </div>
+                  </div>`
+              )
+          })
+      })
+
+    $("#review-form").on("submit",function(e) {
+      e.preventDefault() 
+      let title = $("#title").val();
+      let review = $("#review").val();
+      $.ajax({
+        method: "POST",
+        url: "/faq-review/add/",
+        data: $("#review-form").serialize(),
+      }).done(function(resp) {
+        console.log(resp)
+        $("#review-card").append(
+          // `<div class="col-md-4 mb-5 mb-md-0 d-flex align-items-stretch">
+          //           <div class="card testimonial-card">
+          //             <div class="card-up" style="background-color: #9d789b;"></div>
+          //               <div class="avatar mx-auto bg-white">
+          //               </div>
+          //             <div class="card-body">
+          //               <h4 class="mb-4">${resp.username}</h4>
+          //               <hr />
+          //               <p class="dark-grey-text mt-4 font-weight-bold">
+          //               <i class="fas fa-quote-left pe-2"></i>${resp.title}
+          //               </p>
+          //               <p class="dark-grey-text mt-4">
+          //                 <i class="fas fa-quote-left pe-2"></i>${resp.review}
+          //               </p>
+          //               <a href="/faq-review/delete/${resp.pk}/" class="btn btn-primary">Delete task</a>                        
+          //             </div>
+          //           </div>
+          //         </div>`
+                  `<div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                    <div class="mb-8">
+                      <p class="text-sm text-gray-600 flex items-center">
+                          <img class="w-10 h-10 rounded-full mr-4" src="/static/media/review.png">
+                        User Review
+                      </p>
+                      <div class="text-gray-900 font-bold text-xl mb-2">${resp.title}</div>
+                      <p class="text-gray-700 text-base">${resp.review}</p>
+                    </div>
+                    <div class="flex items-center">
+                      <img class="w-10 h-10 rounded-full mr-4" src="/static/media/profile.png">
+                      <div class="text-sm">
+                        <p class="text-gray-900 leading-none">${resp.username}</p>
+                        <p class="text-gray-600">${resp.date}</p>
+                        <a href="/faq-review/delete/${resp.pk}/" class="btn btn-primary">Delete task</a>
+                      </div>
+                    </div>
+                  </div>`
+
+        )
+        // $("#modal-review").modal("toggle")
+      });
+    })
+  })
+</script>
+
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+<div class="flex justify-center">
+  <div class="flex mt-10 w-fit items-center space-x-3 py-3 px-6 bg-indigo-600 text-white rounded-lg flex align-items-center transition-all duration-400 transform hover:scale-105 cursor-pointer hover:shadow-lg">
+    <button class="text-lg text-md" data-modal-toggle="submit-modal">Add Review</button>
+</div>
+</div>
+
+<!-- Main modal -->
+<div id="submit-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center">
+    <div class="relative p-4 w-full max-w-md h-full md:h-auto">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow">
+            <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-toggle="submit-modal">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+            <div class="py-6 px-6 lg:px-8">
+                <h3 class="mb-4 text-xl font-medium text-gray-900">Share your story</h3>
+                <form id="review-form" action="" class="space-y-6">
+                    {% csrf_token %}
+                    <div>
+                        <label for="reviewTitle" class="block mb-2 text-sm font-medium text-gray-900">Title</label>
+                        {{form.title}}
+                    </div>
+                    <div>
+                      <label for="reviewUser" class="block mb-2 text-sm font-medium text-gray-900">Review</label>
+                      {{form.review}}
+                    </div>
+                    <button data-modal-toggle="submit-modal" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div> 
+
+  <div class="flex justify-center">
+    <div id="review-card"  class="text-center max-w-sm w-full lg:max-w-auto lg:flex gap-4 mt-3 flex-col">
+    </div>
+  </div>
+  
+{% endblock content %}
