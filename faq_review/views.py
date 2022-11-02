@@ -45,11 +45,13 @@ def add_review(request):
         reviewUser.objects.create(
             title = title, review = review, user = user, username = username
         )
+        # pk_id = reviewUser.objects.last("pk")
         return JsonResponse({
             "title": title,
             "review": review,
             "username": username,
             "date": date,
+            # "pk": pk_id
         }, status=201)
 
 def delete_review(request, pk):
@@ -57,7 +59,7 @@ def delete_review(request, pk):
     data = reviewUser.objects.filter(pk=pk)
     print(data)
     data.delete()
-    response = HttpResponseRedirect('/faq-review/')
+    response = HttpResponseRedirect('/faq-review/review/')
     return response
 
 def show_json_faq(request):
