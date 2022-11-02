@@ -1,5 +1,5 @@
 from django.urls import path
-from recommendation.views import index, addProvince, addArea, show_json, delete_province, detail, show_area_json, delete_area
+from recommendation.views import index, addProvince, addArea, show_json, delete_province, detail, show_area_json, delete_area, highlights_index
 
 app_name = 'recommendation'
 
@@ -14,4 +14,5 @@ urlpatterns = [
     # path('addArea/<int:pk>/', addArea, name='addArea'),
     path('detail/<int:pk>/json/', show_area_json, name='show_area_json'),
     path('deleteArea/<int:pk>/', delete_area, name='delete_area'),
+    path('highlights/', highlights_index, name='highlights')
 ]

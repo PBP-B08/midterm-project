@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'recommendation',
     'eventcalendar',
     'things_to_do',
+    'culture_highlights'
 
 ]
 

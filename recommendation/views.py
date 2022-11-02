@@ -7,6 +7,8 @@ from django.core import serializers
 
 # Create your views here.
 
+def highlights_index(request):
+    return render(request, 'highlights.html')
 
 def index(request):
     return render(request, 'recommendation.html')
