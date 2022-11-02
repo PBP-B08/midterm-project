@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'PlanYourTrip',
     'eventcalendar',
     'things_to_do',
+    'plan_trip',
 
 ]
 

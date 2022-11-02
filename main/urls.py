@@ -18,7 +18,7 @@ urlpatterns = [
     path('recommendation/', include('recommendation.urls')),
     path('event-calendar/', include('eventcalendar.urls')),
     path('things-to-do/', include('things_to_do.urls')),
-    path('plan/', include('PlanYourTrip.urls')),
+    path('plan/', include('plan_trip.urls')),
     path('faq-review/', include('faq_review.urls')),
 
 ]
