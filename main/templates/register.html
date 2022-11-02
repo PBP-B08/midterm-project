@@ -38,13 +38,23 @@
       <section class="mt-10">
         <form method="POST" >  
             {% csrf_token %}  
-            <table class="flex justify-center">
+            <style>
+                input {
+                    background-color: #d5d5d5;
+                    border-radius: 5px;
+                    padding: 4px 20px;
+                }
+            </style>
+            <table>  
                 {{ form.as_table }}  
-                <tr>  
-                    <td></td>
-                    <td><input class="bottom-auto" type="submit" name="submit" value="Daftar"/></td>  
-                </tr>  
             </table>  
+            <div>
+                <div class="flex justify-center">
+                    <div class="bg-indigo-500 text-white text-md w-fit rounded-xl py-2 px-8 my-6">
+                        <button type="submit">Daftar</button>
+                    </div>
+                </div>
+            </div>
         </form>
         {% if messages %}
             <ul>
