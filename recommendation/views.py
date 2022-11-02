@@ -5,14 +5,25 @@ from django.shortcuts import redirect, render
 from recommendation.forms import AreaForm, ProvinceForm
 from recommendation.models import Area, Province
 from django.core import serializers
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 
 def index(request):
-    return render(request, 'recommendation.html')
+    provinceForm = ProvinceForm()
+    if request.user.is_superuser:
+        role = 'admin'
+    else:
+        role = 'user'
+    context = {
+        'provinceForm': provinceForm,
+        'role': role
+    }
+    return render(request, 'recommendation.html', context)
 
 
+@login_required(login_url='main:login')
 def addProvince(request):
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -38,6 +49,7 @@ def addProvince(request):
             status=200)
 
 
+@login_required(login_url='main:login')
 def delete_province(request, pk):
     province = Province.objects.get(pk=pk)
     province.delete()
@@ -53,6 +65,7 @@ def delete_province(request, pk):
         status=200)
 
 
+@login_required(login_url='main:login')
 def addArea(request, pk):
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -82,6 +95,7 @@ def addArea(request, pk):
             status=200)
 
 
+@login_required(login_url='main:login')
 def delete_area(request, pk, area_pk):
     province = Province.objects.get(id=pk)
     area = Area.objects.get(pk=area_pk)
@@ -101,7 +115,10 @@ def delete_area(request, pk, area_pk):
 
 def detail(request, pk):
     province = Province.objects.get(id=pk)
-    context = {'province': province}
+    areaForm = AreaForm
+    context = {'province': province,
+               'areaForm': areaForm
+               }
     return render(request, 'detail.html', context)
 
 
