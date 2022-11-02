@@ -15,5 +15,4 @@ urlpatterns = [
          delete_area, name='delete_area'),
     path('detail/<int:pk>/detailArea/<int:area_pk>/',
          detail_area, name='detail_area'),
-    # path('deleteArea/<int:pk>/', delete_area, name='delete_area'),
 ]
