@@ -5,6 +5,7 @@
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
+    <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script>
 
     <!-- <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script> -->
 
@@ -15,11 +16,7 @@
 
 <body>
       <div class="wel">
-        
-        <!-- <h1 class="text-center">Greetings {{name}}! Hope you have a wonderful day.</h1> -->
         <h1 class="text-center">Ready to start Your Journey?</h1>
-        <!-- <a class="btn btn-primary" href="#" role="button">Your Adventure Starts Here</a> -->
-
     </div>
 
     <!-- Button trigger modal -->
@@ -38,35 +35,40 @@
             
             <form method="post" id = "formulir">
                 {% csrf_token %}
-                {{form}}
+                <table>
+                  {{form.as_table}}
+                </table>
+                <a type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
+                <a type="button" class="btn btn-success"  id="formterisi" data-bs-dismiss="modal">Letsgo!</a>
+
             </form>
             
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" id = "formterisi" class="btn btn-primary" data-bs-dismiss="modal">Letsgo!</button>
+          
         </div>
       </div>
     </div>
   </div>
 
-<div id="kartu" class="row row cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-3 g-5">
-{% for item in items %}
+<div id="kartu" class="row row cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-3 g-5 grid grid-cols-3 gap-10">
+  
+<!-- {% for item in items %} -->
 
-<div class="card row-cols-lg-3" id="isikartu" style="width: 18rem;">
+<!-- <div class="card row-cols-lg-3" id="isikartu" style="width: 18rem;">
     {% comment %} <img src="https://theworldtravelguy.com/wp-content/uploads/2021/05/DSCF1664_1200.jpg" class="card-img-top" alt="..."> {% endcomment %}
     <div class="card-body">
       <h5 class="card-title">{{item.judul}} berhasil direncanakan!</h5>
       <p class="card-text">Destinasi kamu kali ini adalah {{item.destinasi}} . Perjalanan {{item.hari}} hari dengan {{item.orang}} teman atau keluargamu akan menjadi perjalanan penuh aktivitas {{item.aktivitas}} yang menyenangkan!</p>
       <p class="card-text">Berikut adalah deskripsi dari rencanamu: {{item.deskripsi}}</p>
       <a href="#" class="btn btn-primary" onclick="">I've done the trip!</a>
-    </div>
+    </div> -->
     <!-- <button class="btn btn-danger m-auto mx-2" onclick=deleteTask(${isikartu.pk})>DELETE</button> -->
 
     <!-- <button onclick="deleteTask(${data[i].pk})" class="delete-task">Delete Task</button> -->
-  </div>
+  <!-- </div> -->
 
-{% endfor %}
+<!-- {% endfor %} -->
 </div>
 
 </body>
@@ -99,6 +101,27 @@
   //         });
   //     });
 
+    function show_cards() {
+      $.get("/plan/show_json", function(arg) {
+        $('#kartu').empty()
+        arg.map((a) => {
+          $('#kartu').append(`
+          <div class="card row-cols-lg-3" id="isikartu" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">${a.fields.judul} berhasil direncanakan!</h5>
+            <p class="card-text">Destinasi kamu kali ini adalah ${a.fields.destinasi} . Perjalanan ${a.fields.hari} hari dengan ${a.fields.orang} teman atau keluargamu akan menjadi perjalanan penuh aktivitas ${a.fields.aktivitas} yang menyenangkan!</p>
+            <p class="card-text">Berikut adalah deskripsi dari rencanamu: ${a.fields.deskripsi}</p>
+            <a href="#" class="btn btn-primary" onclick="">I've done the trip!</a>
+          </div>
+          </div>
+          `)
+        })
+      })
+    }
+    
+    $(document).ready(function(){
+      show_cards()
+    })
 
       
     $("#formterisi").click(function(e){
@@ -114,21 +137,21 @@
             csrfmiddlewaretoken: csrf,
 
             success: function(data){
-                $("#kartu").append(
-                    `
-                    <div class="card row-cols-lg-3" id= style="width: 18rem;">
-                        {% comment %} <img src="https://theworldtravelguy.com/wp-content/uploads/2021/05/DSCF1664_1200.jpg" class="card-img-top" alt="..."> {% endcomment %}
-                        <div class="card-body">
-                          <h5 class="card-title">${data.judul}</h5>
-                          <p class="card-text">${data.destinasi}</p>
-                          <p class="card-text">${data.aktivitas}</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                      </div>
-                   `
-                )
+              show_cards()
+                // $("#kartu").append(
+                //     `
+                //     <div class="card row-cols-lg-3" id= style="width: 18rem;">
+                //         {% comment %} <img src="https://theworldtravelguy.com/wp-content/uploads/2021/05/DSCF1664_1200.jpg" class="card-img-top" alt="..."> {% endcomment %}
+                //         <div class="card-body">
+                //           <h5 class="card-title">${data.judul}</h5>
+                //           <p class="card-text">${data.destinasi}</p>
+                //           <p class="card-text">${data.aktivitas}</p>
+                //           <a href="#" class="btn btn-primary">Go somewhere</a>
+                //         </div>
+                //       </div>
+                //    `
+                // )
                 console.log(data)
-
             }
         })
     })

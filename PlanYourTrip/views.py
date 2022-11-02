@@ -1,5 +1,4 @@
-
-from multiprocessing import context
+from django.core import serializers
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
@@ -13,7 +12,7 @@ from django.contrib.auth.models import User
 def say_helo(request):
     return render(request, 'welcome.html', {'nama': User.get_username})
 
-@login_required(login_url='main.login')
+#@login_required(login_url='main.login')
 def say_plan(request):
     data_destinasi = PlanProperties.objects.all()
     context = {
@@ -22,7 +21,7 @@ def say_plan(request):
     }
     return render(request, "helo.html", context)
 
-@login_required(login_url='main.login')
+@login_required(login_url='../../login/')
 def say_form(request):
     items = PlanProperties.objects.filter(user=request.user)
 
@@ -41,7 +40,7 @@ def say_form(request):
     return render(request, 'helo.html', context)
 
 
-@login_required(login_url='main.login')
+#@login_required(login_url='main.login')
 def delete_form(request, id):
     user = request.user
     temp = PlanProperties.objects.get(pk=id)
@@ -50,6 +49,16 @@ def delete_form(request, id):
     
 
     return HttpResponse('')
+
+
+def show_json(request):
+    data = PlanProperties.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize("json", data), content_type="/application/json")
+    
+
+
+
+
 
     # if request.method == 'POST':
     #     form = InputForm(request.POST)
