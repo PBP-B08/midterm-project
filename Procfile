@@ -1,1 +1,1 @@
-web: python manage.py makemigrations && python manage.py migrate && python manage.py migrate --run-syncdb && gunicorn project_django.wsgi
+web: python manage.py migrate && python manage.py migrate --run-syncdb && gunicorn project_django.wsgi && python manage.py loaddata initial_province_data.json && python manage.py loaddata initial_area_data.json && python manage.py loaddata initial_food.json && python manage.py loaddata initial_event.json && python manage.py loaddata data_faq.json
