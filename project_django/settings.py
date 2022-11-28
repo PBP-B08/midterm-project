@@ -31,7 +31,7 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 # CSRF_TRUSTED_ORIGINS = [f'{APP_NAME}.up.railway.app']
 # CSRF_TRUSTED_ORIGINS = ['cultural-center.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['https://cultural-center.up.railway.app/']
+CSRF_TRUSTED_ORIGINS = ['https://cultural-center.up.railway.app']
 
 # Application definition
 
@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'PlanYourTrip',
     'eventcalendar',
     'things_to_do',
-
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'project_django.urls'
