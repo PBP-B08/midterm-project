@@ -31,7 +31,7 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 # CSRF_TRUSTED_ORIGINS = [f'{APP_NAME}.up.railway.app']
 # CSRF_TRUSTED_ORIGINS = ['cultural-center.up.railway.app']
-# CSRF_TRUSTED_ORIGINS = ['https://cultural-center.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://cultural-center.up.railway.app']
 
 # Application definition
 
