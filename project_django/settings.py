@@ -146,3 +146,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = ""
 MEDIA_URL = ""
+
+CSRF_TRUSTED_ORIGINS = ['https://cultural-center.up.railway.app/']
