@@ -1,1 +1,1 @@
-web: python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --no-input && gunicorn cultural-center.wsgi
+web: python manage.py migrate && gunicorn project_django.wsgi
