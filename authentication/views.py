@@ -17,8 +17,11 @@ def login(request):
             # Redirect to a success page.
             return JsonResponse({
               "status": True,
-              "message": "Successfully Logged In!"
+              "message": "Successfully Logged In!",
               # Insert any extra data if you want to pass data to Flutter
+              # show username and password
+              "username": username,
+              "password": password
             }, status=200)
         else:
             return JsonResponse({
@@ -31,3 +34,11 @@ def login(request):
           "status": False,
           "message": "Failed to Login, check your email/password."
         }, status=401)
+
+@csrf_exempt
+def logout(request):
+    logout(request)
+    return JsonResponse({
+      "status": True,
+      "message": "Successfully Logged Out!"
+    }, status=200)
