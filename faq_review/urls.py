@@ -1,5 +1,5 @@
 from django.urls import path
-from faq_review.views import show_faq, show_review, add_review, show_json_faq, show_json_review, delete_review
+from faq_review.views import *
 
 app_name = 'faq-review'
 
@@ -10,4 +10,5 @@ urlpatterns = [
         path('delete/<int:pk>/', delete_review, name='delete_review'),
         path('show_json_faq/', show_json_faq, name='show_json_faq'),
         path('show_json_review/', show_json_review, name='show_json_review'),
+        path('delete_flutter/<int:pk>/', delete_review_flutter, name='delete_review_flutter'),
 ]
