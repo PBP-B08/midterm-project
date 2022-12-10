@@ -62,6 +62,14 @@ def delete_review(request, pk):
     response = HttpResponseRedirect('/faq-review/review/')
     return response
 
+@csrf_exempt
+def delete_review_flutter(request, pk):
+    print("tes")
+    data = reviewUser.objects.filter(pk=pk)
+    print(data)
+    data.delete()
+    return JsonResponse({"message" : "berhasil delete"}, status=200)
+
 def show_json_faq(request):
     data = FrequentlyAskedQuestion.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json") 
