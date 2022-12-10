@@ -51,7 +51,7 @@ Cultural Center merupakan aplikasi yang menjadi sarana mempromosikan kebudayaan 
    - Detail fitur:
       - Calendar upcoming event
 5. Recommendation
-   - Developer: [Natanael Pascal Simbolon](https://github.com/V1ct0riaa), [Muhammad Vicky Maulana](https://github.com/electyrion)
+   - Developer: [Natanael Pascal Simbolon](https://github.com/V1ct0riaa) (Culture highlight), [Muhammad Vicky Maulana](https://github.com/electyrion) (Deskripsi & Places to go)
    - Deskripsi: Halaman yang menampilkan deskripsi umum mengenai provinsi, rekomendasi tempat untuk destinasi wisata, serta highlight kebudayaan khas daerah.
    - Detail fitur:
       - Deskripsi

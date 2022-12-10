@@ -80,7 +80,6 @@ def addArea(request, pk):
             description=description,
             image=image
         )
-        # return HttpResponse(serializers.serialize("json", [area, ]), content_type="application/json")
         return JsonResponse(
             {
                 "pk": area.id,
