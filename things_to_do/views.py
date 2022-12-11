@@ -2,7 +2,7 @@ from recommendation.models import Province
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, csrf_exempt
 from .forms import EventForm, FoodForm
 
 from .models import Food, Event
@@ -31,6 +31,7 @@ def show_food_event(request, prov_id):
     return render(request, "things.html", context)
 
 @login_required(login_url='main:login')
+@csrf_exempt
 def add_food(request):
     if request.method == 'POST':
         prov_id = request.POST.get("prov_id")
@@ -74,6 +75,7 @@ def json_food(request, prov_id):
     return HttpResponse(serializers.serialize("json", food), content_type="application/json")
 
 @login_required(login_url='main:login')
+@csrf_exempt
 def add_event(request):
     # months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Des"]
     if request.method == 'POST':
