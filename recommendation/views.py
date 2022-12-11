@@ -6,6 +6,7 @@ from recommendation.forms import AreaForm, ProvinceForm
 from recommendation.models import Area, Province
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -24,6 +25,7 @@ def index(request):
 
 
 @login_required(login_url='main:login')
+@csrf_exempt
 def addProvince(request):
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -66,6 +68,7 @@ def delete_province(request, pk):
 
 
 @login_required(login_url='main:login')
+@csrf_exempt
 def addArea(request, pk):
     if request.method == 'POST':
         title = request.POST.get('title')
