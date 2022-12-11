@@ -8,9 +8,6 @@ from django.core import serializers
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
-# Create your views here.
-
-
 def index(request):
     provinceForm = ProvinceForm()
     if request.user.is_superuser:
