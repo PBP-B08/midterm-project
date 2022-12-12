@@ -53,9 +53,10 @@ def delete_form(request, id):
 
 def show_json(request):
     data = PlanProperties.objects.filter(user=request.user)
-    return HttpResponse(serializers.serialize("json", data), content_type="/application/json")
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
     
-    # if request.method == 'POST':
+
+
     #     form = InputForm(request.POST)
     #     if form.is_valid():
     #         report = PlanProperties(
