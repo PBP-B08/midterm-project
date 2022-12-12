@@ -10,6 +10,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.core import serializers
 from .models import Profile
+from django.views.decorators.csrf import csrf_exempt
 
 # @login_required(login_url='main:login')
 def index(request):
@@ -47,7 +48,7 @@ def register(request):
     context = {'form': form}
     return render(request, 'register.html', context)
 
-
+@csrf_exempt
 def logout_user(request):
     logout(request)
     response = HttpResponseRedirect(reverse('main:index'))
