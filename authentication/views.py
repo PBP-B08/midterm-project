@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login as auth_login
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User
 
 @csrf_exempt
 def login(request):
@@ -41,4 +42,19 @@ def logout(request):
     return JsonResponse({
       "status": True,
       "message": "Successfully Logged Out!"
+    }, status=200)
+
+@csrf_exempt
+def register(request):
+    username = request.POST['username']
+    email = request.POST['email']
+    password = request.POST['password']
+    user = User.objects.create_user(username, email, password)
+    user.save()
+    return JsonResponse({
+      "status": True,
+      "message": "Successfully Registered!",
+      "username": username,
+      "email": email,
+      "password": password
     }, status=200)
